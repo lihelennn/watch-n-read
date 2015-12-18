@@ -8,10 +8,23 @@ Stuyvesant High School
 
 ## APIs
 
+## Proposal
+  - Compare books and movies based on reviews
+		- Use regex to look for positive words:negative words ratio
+    - Get data for how many stars the book or movie has
+	- Give nearby movie theaters if the movie is better
+		- Geolocation
+		- Netflix
+	- Give amazon/book store link if the book is better
+	  - Geolocation
+		- Google
+
+
+
 ## The People
   - Helen Li
   - Tony Li
   - David Song
-  - Boying Tang
+  - Boying Tang 
 
 
