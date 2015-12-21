@@ -16,3 +16,6 @@ def results():
 if __name__ == "__main__":
    app.debug = True
    app.run(host="0.0.0.0", port=8000)
+
+#tmdb api key https://api.themoviedb.org/3/movie/550?api_key=###
+#0adca0f6cd83c5390b72d746f4df63e7
