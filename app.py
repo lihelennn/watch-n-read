@@ -1,14 +1,18 @@
-from flask import Flask, render_template,request
-import utils, urllib2, json, random
+from flask import Flask, render_template,request,session,redirect,url_for
+import utils, urllib2, json, random, re
 
 app = Flask(__name__)
 
 
-@app.route("/")
-@app.route("/index")
+@app.route("/", methods = ['GET','POST'])
 def index():
-    return render_template("index.html")
+    if request.method == 'GET':
+        return render_template("index.html")
 
+    else: 
+ #        data = request.form["info"]       
+    return render_template("index.html")
+        
 @app.route("/results")
 def results():
     return render_template("results.html")
