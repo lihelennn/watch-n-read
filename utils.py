@@ -7,7 +7,8 @@ import json, urllib2
 
 #LibraryThing key: 4a17e93e48c8dee63d4b797ab52458bf
 #link: http://www.librarything.com/services/rest/1.1/?[method_name]& [arguments as key=value separated by ampersands]&apikey=[your developer key]
-def searchMovie(name): 
+def searchMovie(query):
+    name = spaceConverter(query)
     url="""
     https://api.themoviedb.org/3/search/movie/?api_key=0adca0f6cd83c5390b72d746f4df63e7&query=%s
     """
@@ -19,8 +20,17 @@ def searchMovie(name):
     for movie in r['results']:
         print movie['original_title']+'\n'
         print movie['overview']+'\n'
-    
+        
 #def searchBook(name):
 searchMovie('harry%20potter')
 
-
+def spaceConverter(query):
+    newstring = ""
+    for letter in query:
+        if letter == " ":
+            newstring += "%20"
+        else:
+            newstring += letter
+    print newstring
+    return newstring
+#spaceConverter("Blade Runner")
