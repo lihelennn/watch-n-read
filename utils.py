@@ -7,16 +7,20 @@ import json, urllib2
 
 #LibraryThing key: 4a17e93e48c8dee63d4b797ab52458bf
 #link: http://www.librarything.com/services/rest/1.1/?[method_name]& [arguments as key=value separated by ampersands]&apikey=[your developer key]
-def searchBook(name): 
+def searchMovie(name): 
     url="""
-   http://idreambooks.com/api/books/reviews.json?q=harry+potter+and+the+half+blood+prince&key=ab64222e93da26b4aba758d80daa792810d18ecd
+    https://api.themoviedb.org/3/search/movie/?api_key=0adca0f6cd83c5390b72d746f4df63e7&query=%s
     """
+    url=url%(name)
+
     request_url = urllib2.urlopen(url)
     result = request_url.read()
     r = json.loads(result)
-    print r['book']['title']
+    for movie in r['results']:
+        print movie['original_title']+'\n'
+        print movie['overview']+'\n'
     
-#def searchMovie(name):
+#def searchBook(name):
+searchMovie('harry%20potter')
 
 
-searchBook("a")
