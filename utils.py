@@ -24,6 +24,19 @@ def searchMovie(query):
 #def searchBook(name):
 searchMovie('harry%20potter')
 
+def getReview(id):
+    url="""
+    https://api.themoviedb.org/3/review/%s/?api_key=0adca0f6cd83c5390b72d746f4df63e7
+    """
+    url=url%(id)
+
+    request_url = urllib2.urlopen(url)
+    result = request_url.read()
+    r = json.loads(result)
+    for movie in r['results']:
+        print movie['media_title']+'\n'
+        print movie['content']+'\n'
+
 def spaceConverter(query):
     newstring = ""
     for letter in query:
@@ -34,3 +47,4 @@ def spaceConverter(query):
     print newstring
     return newstring
 #spaceConverter("Blade Runner")
+#https://api.themoviedb.org/3/review/<MOVIE ID NUMBER GOES HERE>/?api_key=0adca0f6cd83c5390b72d746f4df63e7
