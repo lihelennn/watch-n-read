@@ -11,6 +11,15 @@ import json, urllib2, utils
 
 
 def searchMovie(query):
+    """
+    Searches a movie by a String query using TMDB API
+
+    Params:
+         query: a String of the name of the movie
+
+    Returns:
+         A list of dictionaries that have the title, overview and id of the movie
+    """
     name = utils.spaceConverter(query)
     url="""
     https://api.themoviedb.org/3/search/movie/?api_key=0adca0f6cd83c5390b72d746f4df63e7&query=%s

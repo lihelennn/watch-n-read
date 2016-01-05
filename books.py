@@ -4,6 +4,16 @@ import json, urllib2, utils
 #link: https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
 
 def searchBook(query):
+    """
+    Searches a book by a String query using google books API
+
+    Params:
+         query: a String of what you want to search
+
+    Returns:
+         A list of dictionaries that have the title, authors, and description
+         of the book
+    """
     name=utils.spaceConverter(query)
     url="""
     https://www.googleapis.com/books/v1/volumes?q=%s&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
