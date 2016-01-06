@@ -2,6 +2,9 @@ import json, urllib2, utils
 
 #google books api key: AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
 #link: https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+#GOOD READS
+#key: SBrrYwqTUdPBlX6AF0Zbg
+#secret: eZqmFsmb5HLwymmgTnxMCumMdvxyRTQ2MlZeBbcXmHI
 
 def searchBook(query):
     """
