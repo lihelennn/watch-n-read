@@ -1,7 +1,7 @@
 import json, urllib2, utils
 
 #google books api key: AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
-#link: https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+#link: https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
 #GOOD READS
 #key: SBrrYwqTUdPBlX6AF0Zbg
 #secret: eZqmFsmb5HLwymmgTnxMCumMdvxyRTQ2MlZeBbcXmHI
@@ -17,47 +17,105 @@ def searchBook(query):
          A list of dictionaries that have the title, authors, and description
          of the book
          Keys:
-              {
- "kind": "books#volumes",
+"kind": "books#volumes",
+ "totalItems": 27,
  "items": [
   {
    "kind": "books#volume",
-   "id": "_ojXNuzgHRcC",
-   "etag": "OTD2tB19qn4",
-   "selfLink": "https://www.googleapis.com/books/v1/volumes/_ojXNuzgHRcC",
+   "id": "_oG_iTxP1pIC",
+   "etag": "PaWqLaLOMjk",
+   "selfLink": "https://www.googleapis.com/books/v1/volumes/_oG_iTxP1pIC",
    "volumeInfo": {
-    "title": "Flowers",
+    "title": "Flowers for Algernon",
     "authors": [
-     "Vijaya Khisty Bodach"
+     "Daniel Keyes"
     ],
-   ...
-  },
-  {
-   "kind": "books#volume",
-   "id": "RJxWIQOvoZUC",
-   "etag": "NsxMT6kCCVs",
-   "selfLink": "https://www.googleapis.com/books/v1/volumes/RJxWIQOvoZUC",
-   "volumeInfo": {
-    "title": "Flowers",
-    "authors": [
-     "Gail Saunders-Smith"
+    "publisher": "Houghton Mifflin Harcourt",
+    "publishedDate": "2007-12-01",
+    "description": "The beloved, classic story of a mentally disabled man whose experimental quest for intelligence mirrors that of Algernon, an extraordinary lab mouse.",
+    "industryIdentifiers": [
+     {
+      "type": "ISBN_10",
+      "identifier": "0547539630"
+     },
+     {
+      "type": "ISBN_13",
+      "identifier": "9780547539638"
+     }
     ],
-    ...
-  },
-  {
-   "kind": "books#volume",
-   "id": "zaRoX10_UsMC",
-   "etag": "pm1sLMgKfMA",
-   "selfLink": "https://www.googleapis.com/books/v1/volumes/zaRoX10_UsMC",
-   "volumeInfo": {
-    "title": "Flowers",
-    "authors": [
-     "Paul McEvoy"
+    "readingModes": {
+     "text": true,
+     "image": true
+    },
+    "pageCount": 304,
+    "printType": "BOOK",
+    "categories": [
+     "Fiction"
     ],
-    ...
+    "averageRating": 4.0,
+    "ratingsCount": 1456,
+    "maturityRating": "NOT_MATURE",
+    "allowAnonLogging": false,
+    "contentVersion": "1.11.9.0.preview.3",
+    "imageLinks": {
+     "smallThumbnail": "http://books.google.com/books/content?id=_oG_iTxP1pIC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+     "thumbnail": "http://books.google.com/books/content?id=_oG_iTxP1pIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    },
+    "language": "en",
+    "previewLink": "http://books.google.com/books?id=_oG_iTxP1pIC&printsec=frontcover&dq=flowers+for+algernon+inauthor:keyes&hl=&cd=1&source=gbs_api",
+    "infoLink": "http://books.google.com/books?id=_oG_iTxP1pIC&dq=flowers+for+algernon+inauthor:keyes&hl=&source=gbs_api",
+    "canonicalVolumeLink": "http://books.google.com/books/about/Flowers_for_Algernon.html?hl=&id=_oG_iTxP1pIC"
+   },
+   "saleInfo": {
+    "country": "US",
+    "saleability": "FOR_SALE",
+    "isEbook": true,
+    "listPrice": {
+     "amount": 9.99,
+     "currencyCode": "USD"
+    },
+    "retailPrice": {
+     "amount": 9.99,
+     "currencyCode": "USD"
+    },
+    "buyLink": "http://books.google.com/books?id=_oG_iTxP1pIC&dq=flowers+for+algernon+inauthor:keyes&hl=&buy=&source=gbs_api",
+    "offers": [
+     {
+      "finskyOfferType": 1,
+      "listPrice": {
+       "amountInMicros": 9990000.0,
+       "currencyCode": "USD"
+      },
+      "retailPrice": {
+       "amountInMicros": 9990000.0,
+       "currencyCode": "USD"
+      }
+     }
+    ]
+   },
+   "accessInfo": {
+    "country": "US",
+    "viewability": "PARTIAL",
+    "embeddable": true,
+    "publicDomain": false,
+    "textToSpeechPermission": "ALLOWED",
+    "epub": {
+     "isAvailable": true,
+     "acsTokenLink": "http://books.google.com/books/download/Flowers_for_Algernon-sample-epub.acsm?id=_oG_iTxP1pIC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+    },
+    "pdf": {
+     "isAvailable": true,
+     "acsTokenLink": "http://books.google.com/books/download/Flowers_for_Algernon-sample-pdf.acsm?id=_oG_iTxP1pIC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+    },
+    "webReaderLink": "http://books.google.com/books/reader?id=_oG_iTxP1pIC&hl=&printsec=frontcover&output=reader&source=gbs_api",
+    "accessViewStatus": "SAMPLE",
+    "quoteSharingAllowed": false
+   },
+   "searchInfo": {
+    "textSnippet": "The beloved, classic story of a mentally disabled man whose experimental quest for intelligence mirrors that of Algernon, an extraordinary lab mouse."
+   }
   },
-  "totalItems": 3
-}
+             
     """
     name=utils.spaceConverter(query)
     url="""
