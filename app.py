@@ -10,7 +10,7 @@ def index():
         return render_template("index.html")
 
     else: 
-        #data = request.form["info"]
+        #data = request.form["search"]
         return redirect(url_for("/results", data = data))
     return render_template("index.html")
         
