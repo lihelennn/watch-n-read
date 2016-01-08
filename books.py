@@ -44,13 +44,15 @@ def searchBook(query):
             traits['authors']=book['volumeInfo']['authors']
             traits['desc']=book['volumeInfo']['description']
             traits["ISBN"]=int(book['volumeInfo']['industryIdentifiers'][0]['identifier'])
-            traits['rating']=float(book['volumeInfo']['averageRating'])
+            print(book['volumeInfo'])
+            #traits['rating']=float(book['volumeInfo']['averageRating'])
             bookList.append(traits)
             ctr+=1
 
     return bookList
         
 print searchBook("the secrets of the immortal nicholas flamel")
+
 
 """
 "kind": "books#volumes",
