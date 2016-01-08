@@ -1,4 +1,4 @@
-import re, regex
+import re
 
 def spaceConverter(query):
     newstring = ""
