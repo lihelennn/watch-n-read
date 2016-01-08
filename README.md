@@ -20,11 +20,14 @@ Stuyvesant High School
 		- Google
 
 
-
 ## The People
   - Helen Li
   - Tony Li
   - David Song
   - Boying Tang 
+
+## Progress
+  - As of 01/08/2016: Testing backend with different APIs.
+  		      Frontend that needs to be expanded and conntected with backend.
 
 
