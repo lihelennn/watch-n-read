@@ -14,18 +14,54 @@ def searchBook(query):
          query: a String of what you want to search
 
     Returns:
-         A list of dictionaries that have the title, authors, and description
-         of the book
+         A list of dictionaries, each dictionary containing a book's info, 
+         including title, authors, description, ISBN
+         and average rating of the book
          Keys:
+              title (string)
+              authors (list containing list)
+              desc (string)
+              ISBN (int)
+              rating (float)
+    """
+    name=utils.spaceConverter(query)
+    url="""
+    https://www.googleapis.com/books/v1/volumes?q=%s&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
+    """
+    url=url%(name)
+    
+    request_url = urllib2.urlopen(url)
+    result = request_url.read()
+    r = json.loads(result)
+    bookList=[]
+    ctr=0
+    for book in r['items']:
+        if ctr==10:
+            break
+        traits={}
+        if 'title' in book['volumeInfo'].keys():
+            traits['title']=book['volumeInfo']['title']
+            traits['authors']=book['volumeInfo']['authors']
+            traits['desc']=book['volumeInfo']['description']
+            traits["ISBN"]=int(book['volumeInfo']['industryIdentifiers'][0]['identifier'])
+            traits['rating']=float(book['volumeInfo']['averageRating'])
+            bookList.append(traits)
+            ctr+=1
+
+    return bookList
+        
+print searchBook("the secrets of the immortal nicholas flamel")
+
+"""
 "kind": "books#volumes",
  "totalItems": 27,
  "items": [
-  {
+    {
    "kind": "books#volume",
-   "id": "_oG_iTxP1pIC",
-   "etag": "PaWqLaLOMjk",
-   "selfLink": "https://www.googleapis.com/books/v1/volumes/_oG_iTxP1pIC",
-   "volumeInfo": {
+    "id": "_oG_iTxP1pIC",
+    "etag": "PaWqLaLOMjk",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/_oG_iTxP1pIC",
+    "volumeInfo": {
     "title": "Flowers for Algernon",
     "authors": [
      "Daniel Keyes"
@@ -115,30 +151,4 @@ def searchBook(query):
     "textSnippet": "The beloved, classic story of a mentally disabled man whose experimental quest for intelligence mirrors that of Algernon, an extraordinary lab mouse."
    }
   },
-             
-    """
-    name=utils.spaceConverter(query)
-    url="""
-    https://www.googleapis.com/books/v1/volumes?q=%s&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
-    """
-    url=url%(name)
-    
-    request_url = urllib2.urlopen(url)
-    result = request_url.read()
-    r = json.loads(result)
-    bookList=[]
-    ctr=0
-    for book in r['items']:
-        if ctr==10:
-            break
-        traits={}
-        if 'title' in book['volumeInfo'].keys():
-            traits['title']=book['volumeInfo']['title']
-            traits['authors']=book['volumeInfo']['authors']
-            traits['desc']=book['volumeInfo']['description']
-            bookList.append(traits)
-            ctr+=1
-
-    return bookList
-        
-print searchBook("harry potter")
+"""
