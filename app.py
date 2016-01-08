@@ -9,27 +9,45 @@ def index():
     if request.method == 'GET':
         return render_template("index.html")
 
-    else: 
-        #data = request.form["search"]
-        return redirect(url_for("/results", data = data))
+    else:
+        query = request.form["search"]
+        session['query']=query
+        return redirect(url_for("/results",query=query))
+       
     return render_template("index.html")
         
 @app.route("/results")
 def results():
-    return render_template("results.html")
+      query=request.args['query']
+      query=session['query']
+      bookData=books.searchBook(query)
+      movieData=movies.searchMovie(query)
+
+      bookInfo=""
+      for book in bookData:
+            bookInfo+=book['title']+'\n\n'
+            bookInfo+=book['authors']+'\n\n'
+            bookInfo+=book['desc']+'\n\n'
+
+      movieInfo=""
+      for movie in movieData:
+            movieInfo+=movie['title']+'\n\n'
+            movieInfo+=movie['overview']+'\n\n'
+      return render_template("results.html", bookInfo = bookInfo, movieInfo=movieInfo)
 
 if __name__ == "__main__":
    app.debug = True
+   app.secret_key="watch-n-read"
    app.run(host="0.0.0.0", port=8000)
 
 #takes string, returns dictionary with keys: title, author, desc(description)
-books.searchBook(query)
+#books.searchBook(query)
 
 #takes string, returns dictionary with keys: title, overview, id
-movies.searchMovie(query)
+#movies.searchMovie(query)
 
 #uses id to get review, returns ???
-movies.getReview(id)
+#movies.getReview(id)
 
 
 
