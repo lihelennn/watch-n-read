@@ -11,6 +11,7 @@ def index():
 
     else:
         query = request.form["search"]
+        print query
         session['query']=query
         return redirect(url_for("/results",query=query))
        
