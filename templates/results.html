@@ -2,8 +2,23 @@
   <head>
   </head>
   <body>
-    {{bookInfo}}<br>
-    {{movieInfo}}
+    <h1>Books</h1>
+    {% for book in bookData %}
+    <h2>{{book["title"]}}</h2><br><br>
+    by:<br>
+    {% for a in book["authors"] %}
+    {{a}}<br>
+    {% endfor %}
+    {{book["desc"]}}<br><br>
+    {% endfor %}
+  
+    <br>
+    <br>
+    <h1>Movies</h1>
+    {% for movie in movieData %}
+    <h2>{{movie["title"]}}</h2><br><br>
+    {{movie["overview"]}}<br><br>
+    {% endfor %}
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src = "static/results.js"></script>

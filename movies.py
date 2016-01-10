@@ -33,15 +33,15 @@ def searchMovie(query):
   
     for movie in r['results']:
         traits={}
-        traits['title']=movie['original_title'].encode('utf-8')
-        traits['overview']=movie['overview'].encode('utf-8')
+        traits['title']=movie['original_title']
+        traits['overview']=movie['overview']
         traits['id']=movie['id']
         movieList.append(traits)
 
 
     return movieList
 #def searchBook(name):
-searchMovie('harry%20potter')
+#searchMovie('harry%20potter')
 
 def getReview(id):
     url="""
@@ -59,4 +59,4 @@ def getReview(id):
 
 #spaceConverter("Blade Runner")
 #https://api.themoviedb.org/3/review/<MOVIE ID NUMBER GOES HERE>/?api_key=0adca0f6cd83c5390b72d746f4df63e7
-searchMovie('harry potter')
+#searchMovie('harry potter')

@@ -10,10 +10,11 @@ def index():
         return render_template("index.html")
 
     else:
-        query = request.form["search"]
+        print request.form
+        query = request.form["search"].encode('utf-8')
         print query
         session['query']=query
-        return redirect(url_for("/results",query=query))
+        return redirect(url_for("results",query=query))
        
     return render_template("index.html")
         
@@ -24,17 +25,20 @@ def results():
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
 
+      """
       bookInfo=""
       for book in bookData:
-            bookInfo+=book['title']+'\n\n'
-            bookInfo+=book['authors']+'\n\n'
-            bookInfo+=book['desc']+'\n\n'
+            bookInfo+=book['title']+'<br><br>'
+            for a in book['authors']:
+                bookInfo+=a.encode('utf-8')+'<br>'
+            bookInfo+=book['desc']+'<br><br>'
 
       movieInfo=""
       for movie in movieData:
-            movieInfo+=movie['title']+'\n\n'
-            movieInfo+=movie['overview']+'\n\n'
-      return render_template("results.html", bookInfo = bookInfo, movieInfo=movieInfo)
+            movieInfo+=movie['title']+'<br><br>'
+            movieInfo+=movie['overview']+'<br><br>'
+      """
+      return render_template("results.html", bookData = bookData, movieData=movieData)
 
 if __name__ == "__main__":
    app.debug = True
