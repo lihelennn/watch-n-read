@@ -39,7 +39,7 @@ def searchBook(query):
         if ctr==10:
             break
         traits={}
-        if 'title' in book['volumeInfo'].keys():
+        if 'title' and 'description' in book['volumeInfo'].keys():
             traits['title']=book['volumeInfo']['title']
             traits['authors']=book['volumeInfo']['authors']
             traits['desc']=book['volumeInfo']['description']
