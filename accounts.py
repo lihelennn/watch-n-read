@@ -31,6 +31,15 @@ def newUser(username,password):
     db.users.insert_one({"username":username,"password":password})
     return True
 
+def getPostsFromUser(username):
+    connection = MongoClient()
+    db = connection.wnr
+    
+    username = username.lower()
+    cursor=db.posts.find("username": username)
+    postlist = []
+    for posts in cursor:
+        postlist += [ [ str(posts['username']), str(posts['title']), str(posts['content']) ] ]
+    return postlist
 newUser("Tony","wasd")
-print isValid("Tony","wasd")
 
