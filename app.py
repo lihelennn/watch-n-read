@@ -3,6 +3,11 @@ import utils, urllib2, json, random, re, books, movies
 
 app = Flask(__name__)
 
+#testing html template starts
+@app.route("/index1")
+def index1():
+    return render_template("index1.html")
+#testing html template ends
 
 @app.route("/", methods = ['GET','POST'])
 def index():
