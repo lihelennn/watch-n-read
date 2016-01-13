@@ -15,18 +15,18 @@ def index():
         return render_template("index.html")
 
     else:
-        print request.form
         query = request.form["search"].encode('utf-8')
-        print query
         session['query']=query
         return redirect(url_for("results",query=query))
        
     return render_template("index.html")
         
-@app.route("/results")
-def results():
-      query=request.args['query']
-      query=session['query']
+@app.route("/results", methods = ['GET','POST'])
+@app.route("/results/<query>", methods = ['GET','POST'])
+def results(query=""):
+  if request.method == 'GET':
+      #query=request.args['query']
+      #query=session['query']
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
 
@@ -44,6 +44,10 @@ def results():
             movieInfo+=movie['overview']+'<br><br>'
       """
       return render_template("results.html", bookData = bookData, movieData=movieData)
+  else:
+      query = request.form["search"].encode('utf-8') 
+      print query
+      return redirect(url_for("results",query=query))
 
 if __name__ == "__main__":
    app.debug = True
