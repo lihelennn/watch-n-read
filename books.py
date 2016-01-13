@@ -1,4 +1,4 @@
-import json, urllib2, utils
+import json, urllib2, utils, re
 
 #google books api key: AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
 #link: https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
@@ -86,14 +86,12 @@ def getWidgetHelper(text):
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 </style>"""
-    
-    
-    return widget
+    exp = """<div id="goodreads-widget">(.*)</div>"""
+    newlist = re.findall(exp, text)
+    print newlist
+    return widget + newlist[0]
     
 #print searchBook("the secrets of the immortal nicholas flamel")
-
-print getBookReview('9780552564267')
-
 
 def getBookReview(isbn):
     """
@@ -103,7 +101,7 @@ def getBookReview(isbn):
          isbn: a String of integers
 
     Returns:
-         Returns iframe review widget
+         Returns iframe review widget. Basically HTML code
     """
     url="""
 https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
@@ -111,8 +109,10 @@ https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
     url=url%(isbn)
     request_url = urllib2.urlopen(url) #ERROR HERE
     result = request_url.read()
-    return result
+    widget = getWidgetHelper(result)
+    return widget
 
+print getBookReview('9780552564267')
 ##########################################################################
 
 """
