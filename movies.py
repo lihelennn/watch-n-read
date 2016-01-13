@@ -43,7 +43,7 @@ def searchMovie(query):
 #def searchBook(name):
 #searchMovie('harry%20potter')
 
-def getReview(id):
+def getMovieReview(id):
     url="""
     https://api.themoviedb.org/3/review/%s/?api_key=0adca0f6cd83c5390b72d746f4df63e7
     """
