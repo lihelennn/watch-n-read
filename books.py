@@ -48,11 +48,72 @@ def searchBook(query):
             #traits['rating']=float(book['volumeInfo']['averageRating'])
             bookList.append(traits)
             ctr+=1
-
     return bookList
-        
+
+def getWidgetHelper(text):
+    widget = """<style>
+  #goodreads-widget {
+    font-family: georgia, serif;
+    padding: 18px 0;
+    width:565px;
+  }
+  #goodreads-widget h1 {
+    font-weight:normal;
+    font-size: 16px;
+    border-bottom: 1px solid #BBB596;
+    margin-bottom: 0;
+  }
+  #goodreads-widget a {
+    text-decoration: none;
+    color:#660;
+  }
+  iframe{
+    background-color: #fff;
+  }
+  #goodreads-widget a:hover { text-decoration: underline; }
+  #goodreads-widget a:active {
+    color:#660;
+  }
+  #gr_footer {
+    width: 100%;
+    border-top: 1px solid #BBB596;
+    text-align: right;
+  }
+  #goodreads-widget .gr_branding{
+    color: #382110;
+    font-size: 11px;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>"""
+    
+    
+    return widget
+    
 #print searchBook("the secrets of the immortal nicholas flamel")
 
+print getBookReview('9780552564267')
+
+
+def getBookReview(isbn):
+    """
+    Returns iframe review widget of the reviews of the book from GoodReads
+
+    Params:
+         isbn: a String of integers
+
+    Returns:
+         Returns iframe review widget
+    """
+    url="""
+https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
+    """
+    url=url%(isbn)
+    request_url = urllib2.urlopen(url) #ERROR HERE
+    result = request_url.read()
+    return result
+
+##########################################################################
 
 """
 "kind": "books#volumes",
