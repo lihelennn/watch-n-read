@@ -22,14 +22,13 @@ def searchBook(query):
               authors (list containing list)
               desc (string)
               ISBN (int)
-              rating (float)
     """
     name=utils.spaceConverter(query)
     url="""
     https://www.googleapis.com/books/v1/volumes?q=%s&key=AIzaSyC3JS6akFEzmQqhsa_ny3OoqEt3gDOAWow
     """
-    url=url%(name)
     
+    url=url%(name)
     request_url = urllib2.urlopen(url)
     result = request_url.read()
     r = json.loads(result)
@@ -44,26 +43,31 @@ def searchBook(query):
             traits['authors']=book['volumeInfo']['authors']
             traits['desc']=book['volumeInfo']['description']
             traits["ISBN"]=int(book['volumeInfo']['industryIdentifiers'][0]['identifier'])
-            #print(book['volumeInfo'])
-            #traits['rating']=float(book['volumeInfo']['averageRating'])
             bookList.append(traits)
             ctr+=1
     return bookList
 
 def getWidgetHelper(text):
+    """
+    Pulls out the widget from text
+
+    Params:
+         text: a String that includes the iframe widget within it
+
+    Returns:
+         newlist[0]: first and only result, containing a string that is the widget
+"""
     widget = ""
     exp = """(<style>[\S\s]*</div>[\S\s]*</div>)"""
     newlist = re.findall(exp, text)
     return newlist[0]
-    
-#print searchBook("the secrets of the immortal nicholas flamel")
 
 def getBookReview(isbn):
     """
     Returns iframe review widget of the reviews of the book from GoodReads
 
     Params:
-         isbn: a String of integers
+         isbn: 13 digit integer
 
     Returns:
          Returns iframe review widget. Basically HTML code
@@ -71,13 +75,14 @@ def getBookReview(isbn):
     url="""
 https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
     """
-    url=url%(isbn)
+    url=url%(str(isbn))
     request_url = urllib2.urlopen(url) #ERROR HERE
     result = request_url.read()
     widget = getWidgetHelper(result)
     return widget
 
-print getBookReview('9780552564267')
+#print searchBook("the hunger games")
+print getBookReview(9780552564267)
 ##########################################################################
 
 """
