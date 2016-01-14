@@ -65,24 +65,25 @@ def newComment(username, comment, postID):
     db = connection.wnr
 
     cursor=db.posts.find({"_id": postID})
-    db.comments.update_one("$set":{postID: [{"username":username, "comment": comment}]})
+    db.comments.update_one({"$set":{postID: [{"username":username, "comment": comment}]}})
 
-def getCommentsByPostID(postID);
+def getCommentsByPostID(postID):
     connection = MongoClient()
     db= connection.wnr
 
     cursor=db.comments.find()
     
     for doc in cursor:
-        if postID==doc:
-            
-    
-newPost("Tony","God","Hi my name is tony li")
-newPost("Tony","What","this is bs....")
-newPost("Tony","I am god","whyyyyyyyyy")
-newPost("Mario","Luigi sucks","it's a me, mario")
-newPost("Luigi","Mario sucks","waaaaa luigi")
-newPost("Wario","war","whaaaaaaam")
-newPost("Wario","io","whaaam")
+        print doc
+
+
+newPost("Tony","hai","post here")
+newPost("Tony","nothing","post here1")
+newPost("Tony","not","post here2")
+newPost("Mario","hai","post here")
+newPost("Bowser","hai","....5")
+newPost("Wario","wow","waaahhhh")
+newPost("Luigo","rio","riiiiiiiiiiiiiio")
+#newComment("tony","this sucks",)
 
 print getAllPosts()
