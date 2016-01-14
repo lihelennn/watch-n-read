@@ -33,9 +33,9 @@ def newUser(username,password):
     return True
 
 def newPost(username, title, post):
+   
     connection = MongoClient()
     db=connection.wnr
-
     username=username.lower()
     db.posts.insert_one({"username": username, "title":title, "content":post})
     
@@ -57,11 +57,26 @@ def getAllPosts():
     cursor=db.posts.find()
     postlist=[]
     for post in cursor:
-        print post
         postlist+=[ [ str(post['username']), str(post['title']), str(post['content']) ] ]
     return postlist
 
+def newComment(username, comment, postID):
+    connection = MongoClient()
+    db = connection.wnr
 
+    cursor=db.posts.find({"_id": postID})
+    db.comments.update_one("$set":{postID: [{"username":username, "comment": comment}]})
+
+def getCommentsByPostID(postID);
+    connection = MongoClient()
+    db= connection.wnr
+
+    cursor=db.comments.find()
+    
+    for doc in cursor:
+        if postID==doc:
+            
+    
 newPost("Tony","God","Hi my name is tony li")
 newPost("Tony","What","this is bs....")
 newPost("Tony","I am god","whyyyyyyyyy")
