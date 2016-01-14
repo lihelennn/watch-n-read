@@ -51,45 +51,10 @@ def searchBook(query):
     return bookList
 
 def getWidgetHelper(text):
-    widget = """<style>
-  #goodreads-widget {
-    font-family: georgia, serif;
-    padding: 18px 0;
-    width:565px;
-  }
-  #goodreads-widget h1 {
-    font-weight:normal;
-    font-size: 16px;
-    border-bottom: 1px solid #BBB596;
-    margin-bottom: 0;
-  }
-  #goodreads-widget a {
-    text-decoration: none;
-    color:#660;
-  }
-  iframe{
-    background-color: #fff;
-  }
-  #goodreads-widget a:hover { text-decoration: underline; }
-  #goodreads-widget a:active {
-    color:#660;
-  }
-  #gr_footer {
-    width: 100%;
-    border-top: 1px solid #BBB596;
-    text-align: right;
-  }
-  #goodreads-widget .gr_branding{
-    color: #382110;
-    font-size: 11px;
-    text-decoration: none;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-</style>"""
-    exp = """<div id="goodreads-widget">(.*)</div>"""
+    widget = ""
+    exp = """(<style>[\S\s]*</div>[\S\s]*</div>)"""
     newlist = re.findall(exp, text)
-    print newlist
-    return widget + newlist[0]
+    return newlist[0]
     
 #print searchBook("the secrets of the immortal nicholas flamel")
 
