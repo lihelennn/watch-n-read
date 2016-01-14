@@ -1,3 +1,5 @@
+{% block beginning %}
+
 <!DOCTYPE html>
 <!--
     * A Design by GraphBerry
@@ -30,6 +32,10 @@
     </style>
 
   </head>
+
+{% endblock beginning %}
+
+{% block beginning2 %}
   <body>
 
     <div class="jumbotron home home-fullscreen" id="home">
@@ -43,8 +49,8 @@
 	<a href="#" class="close"><i class="fa fa-close"></i></a>
 	<h3>Menu</h3>
 	<ul class="nav">
-	  <li><a data-scroll href="#home">Home</a></li>
-	  <li><a data-scroll hred="/login">Login</a></li>
+	  <li><a data-scroll href="/index1">Home</a></li>
+	  <li><a data-scroll href="/login">Login</a></li>
 	</ul>
 	<ul class="social-icons">
 	  <li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -79,6 +85,10 @@
     </div>
 
     <!-- Search form end -->
+
+{% endblock beginning2 %}
+
+{% block carousel %}
 
     <!--Carousel section start -->
     <section id="services">
@@ -126,6 +136,10 @@
     </section>
     <!-- Carousel Section end -->
 
+{% endblock carousel %}
+
+{% block footer %}
+
     <!-- Footer start -->
     <footer>
       <div class="container">
@@ -153,3 +167,5 @@
     <script type="text/javascript" src="static/app.js"></script>
   </body>
 </html>
+
+{% endblock footer %}
