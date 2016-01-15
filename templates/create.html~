@@ -1,0 +1,8 @@
+<!DOCTYPE HTML>
+<form type="POST">
+  Username<input type="text" name="uname">
+  Password<input type="text" name="pword">
+  <input type="submit">
+</form>
+
+{{msg}}
