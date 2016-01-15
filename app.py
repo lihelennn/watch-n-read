@@ -9,6 +9,44 @@ def index1():
     return render_template("index1.html")
 #testing html template ends
 
+@app.route("/board", methods = ['GET','POST'])
+def board():
+    
+@app.route("/new", methods = ['GET','POST'])
+def new():
+    if request.method=="GET":
+        return render_template("new.html")
+    else:
+        uname=session['uname']
+        title=request.form['title']
+        line=request.form['entry']
+        module.makePost(uname, title, line)
+        #for multiple buttons
+        #button=request.form['button']
+        #if button=="Submit":
+        return redirect('/thread/%s' %title)
+
+@app.route("/thread", methods = ['GET','POST'])
+@app.route("/thread/<title>", methods = ['GET','POST'])
+def thread(title=''):
+    
+
+
+
+@app.route("/login", methods = ['GET','POST'])
+def login():
+    if request.method == 'GET':
+        return render_template("login.html")
+    else:
+        uname = request.form['uname']
+        pword = request.form['pword']
+        #authentication goes here
+        if uname == 'test' and pword == 'test':
+            session['uname'] = uname;
+            return redirect(url_for("index"))
+        error = "Invaild username password combination"
+        return render_template("login.html", error = error)
+        
 @app.route("/", methods = ['GET','POST'])
 def index():
     if request.method == 'GET':
@@ -16,7 +54,7 @@ def index():
 
     else:
         query = request.form["search"].encode('utf-8')
-        session['query']=query
+        #session['query']=query
         return redirect(url_for("results",query=query))
        
     return render_template("index.html")
@@ -30,6 +68,7 @@ def results(query=""):
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
 
+      #???
       """
       bookInfo=""
       for book in bookData:
