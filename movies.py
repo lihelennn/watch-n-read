@@ -37,26 +37,37 @@ def searchMovie(query):
         traits['overview']=movie['overview']
         traits['id']=movie['id']
         movieList.append(traits)
-
-
     return movieList
-#def searchBook(name):
-#searchMovie('harry%20potter')
 
 def getMovieReview(id):
-    url="""
-    https://api.themoviedb.org/3/review/%s/?api_key=0adca0f6cd83c5390b72d746f4df63e7
     """
-    url=url%(id)
+    Returns reviews using TMDB movie ID
 
-    request_url = urllib2.urlopen(url)
+    Params:
+         ID: an integer we get from searchMovie()
+
+    Returns:
+         A list of reviews
+    """
+    aurl="""https://api.themoviedb.org/3/review/%s/?api_key=0adca0f6cd83c5390b72d746f4df63e7
+    """
+    url = """
+    https://api.themoviedb.org/3/review/query=%s&api_key=0adca0f6cd83c5390b72d746f4df63e7
+    """
+    url=url%(str(id))
+
+    request_url = urllib2.urlopen(url) ##ERROR HERE
     result = request_url.read()
     r = json.loads(result)
+    print r
+    reviewlist = []
     for movie in r['results']:
-        print movie['media_title']+'\n'
-        print movie['content']+'\n'
+        newlist = []
+        newlist += movie['media_title']
+        newlist += movie['content']
+        reviewlist += newlist
+    return reviewlist
 
-
-#spaceConverter("Blade Runner")
 #https://api.themoviedb.org/3/review/<MOVIE ID NUMBER GOES HERE>/?api_key=0adca0f6cd83c5390b72d746f4df63e7
-#searchMovie('harry potter')
+#print searchMovie('harry potter')
+print getMovieReview(54507)

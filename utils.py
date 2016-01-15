@@ -7,7 +7,6 @@ def spaceConverter(query):
             newstring += "%20"
         else:
             newstring += letter
-    print newstring
     return newstring
 
 def reviewEvaluation(text):
