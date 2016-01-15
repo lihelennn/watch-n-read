@@ -1,5 +1,5 @@
 from flask import Flask, render_template,request,session,redirect,url_for
-import utils, urllib2, json, random, re, books, movies
+import utils, urllib2, json, random, re, books, movies, accounts
 
 app = Flask(__name__)
 
@@ -8,14 +8,17 @@ app = Flask(__name__)
 def index1():
     return render_template("index1.html")
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
+
+#@app.route("/login")
+#def login():
+#    return render_template("login.html")
 
 #testing html template ends
 
-@app.route("/board", methods = ['GET','POST'])
-def board():
+#@app.route("/board", methods = ['GET','POST'])
+#def board():
+
+
     
 @app.route("/new", methods = ['GET','POST'])
 def new():
@@ -25,17 +28,29 @@ def new():
         uname=session['uname']
         title=request.form['title']
         line=request.form['entry']
-        module.makePost(uname, title, line)
+        accounts.newPost(uname, title, line)
         #for multiple buttons
         #button=request.form['button']
         #if button=="Submit":
         return redirect('/thread/%s' %title)
 
-@app.route("/thread", methods = ['GET','POST'])
-@app.route("/thread/<title>", methods = ['GET','POST'])
-def thread(title=''):
+#@app.route("/thread", methods = ['GET','POST'])
+#@app.route("/thread/<title>", methods = ['GET','POST'])
+#def thread(title=''):
     
-
+@app.route("/create", methods = ['GET', 'POST'])
+def create():
+    if request.method == 'GET':
+        return render_template('create.html')
+    else:
+        uname = request.form['uname']
+        pword = request.form['pword']
+        if accounts.newUser(uname,pword):
+            msg="Success!"
+            return render_template('create.html', msg=msg)
+        else:
+            msg="Failure!"
+            return render_template('create.html', msg=msg)
 
 
 @app.route("/login", methods = ['GET','POST'])
@@ -46,7 +61,7 @@ def login():
         uname = request.form['uname']
         pword = request.form['pword']
         #authentication goes here
-        if uname == 'test' and pword == 'test':
+        if accounts.isValid(uname,pword):
             session['uname'] = uname;
             return redirect(url_for("index"))
         error = "Invaild username password combination"
