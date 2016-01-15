@@ -8,6 +8,7 @@ def isValid(username, password):
     cursor=db.users.find({'username':username, 'password': password})
     userlist=[]
     for doc in cursor:
+        print doc
         for i in doc:
             userlist+=[str(i)]
 
@@ -31,15 +32,58 @@ def newUser(username,password):
     db.users.insert_one({"username":username,"password":password})
     return True
 
+def newPost(username, title, post):
+   
+    connection = MongoClient()
+    db=connection.wnr
+    username=username.lower()
+    db.posts.insert_one({"username": username, "title":title, "content":post})
+    
 def getPostsFromUser(username):
     connection = MongoClient()
     db = connection.wnr
     
     username = username.lower()
-    cursor=db.posts.find("username": username)
+    cursor=db.posts.find({"username": username})
     postlist = []
     for posts in cursor:
-        postlist += [ [ str(posts['username']), str(posts['title']), str(posts['content']) ] ]
+        postlist += [ [ str(post['username']), str(post['title']), str(post['content']) ] ]
     return postlist
-newUser("Tony","wasd")
 
+def getAllPosts():
+    connection = MongoClient()
+    db = connection.wnr
+
+    cursor=db.posts.find()
+    postlist=[]
+    for post in cursor:
+        postlist+=[ [ str(post['username']), str(post['title']), str(post['content']) ] ]
+    return postlist
+
+def newComment(username, comment, postID):
+    connection = MongoClient()
+    db = connection.wnr
+
+    cursor=db.posts.find({"_id": postID})
+    db.comments.update_one({"$set":{postID: [{"username":username, "comment": comment}]}})
+
+def getCommentsByPostID(postID):
+    connection = MongoClient()
+    db= connection.wnr
+
+    cursor=db.comments.find()
+    
+    for doc in cursor:
+        print doc
+
+
+newPost("Tony","hai","post here")
+newPost("Tony","nothing","post here1")
+newPost("Tony","not","post here2")
+newPost("Mario","hai","post here")
+newPost("Bowser","hai","....5")
+newPost("Wario","wow","waaahhhh")
+newPost("Luigo","rio","riiiiiiiiiiiiiio")
+#newComment("tony","this sucks",)
+
+print getAllPosts()

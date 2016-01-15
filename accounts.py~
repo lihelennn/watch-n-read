@@ -1,0 +1,15 @@
+from pymongo import MongoClient
+
+def isValid(username, password):
+    connection=MongoClient()
+    username=username.lower()
+    db=connection.wnr
+    cursor=db.users.find({'username':username, 'password': password})
+    userlist=[]
+    for doc in cursor:
+        for i in doc:
+            userlist.append([str(i)])
+
+    if 'username' and 'password' in userlist:
+        return True
+    return False

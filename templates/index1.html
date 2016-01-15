@@ -1,3 +1,5 @@
+{% block beginning %}
+
 <!DOCTYPE html>
 <!--
     * A Design by GraphBerry
@@ -26,27 +28,32 @@
       width: 70%;
       margin: auto;
       }
+      
     </style>
 
   </head>
+
+{% endblock beginning %}
+
+{% block beginning2 %}
   <body>
+
     <div class="jumbotron home home-fullscreen" id="home">
       <div class="mask"></div>
-      <a href="#" class="logo">
-	<img src="img/logo.png" alt="Moderno - Theme by GraphBerry.com">
-      </a>
+      <!--<a href="#" class="logo">
+	<img src="http://www.clipartpal.com/_thumbs/pd/education/large_open_book.png" height="42" width="42" alt="Moderno - Theme by GraphBerry.com">
+      </a>-->
       <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
       <!-- Offsite navigation -->
       <nav class="menu">
 	<a href="#" class="close"><i class="fa fa-close"></i></a>
 	<h3>Menu</h3>
 	<ul class="nav">
-	  <li><a data-scroll href="#home">Home</a></li>
-	  
+	  <li><a data-scroll href="/index1">Home</a></li>
+	  <li><a data-scroll href="/login">Login</a></li>
 	</ul>
 	<ul class="social-icons">
 	  <li><a href=""><i class="fa fa-facebook"></i></a></li>
-	  
 	</ul>
       </nav>
       <div class="container">
@@ -68,7 +75,7 @@
 	      <div class="form-group">
 		<!--<div class="col-xs-offset-2 col-sm-4">-->
 		<div class="col-xs-offset-4 col-xs-4">
-		  <center><button type="submit" class="btn btn-sm btn-sm">Submit</button></center>
+		  <center><button type="submit" class="btn-danger btn-sm btn-sm">Submit</button></center>
 		</div>
 	      </div>
 	    </form>
@@ -78,6 +85,10 @@
     </div>
 
     <!-- Search form end -->
+
+{% endblock beginning2 %}
+
+{% block carousel %}
 
     <!--Carousel section start -->
     <section id="services">
@@ -125,6 +136,10 @@
     </section>
     <!-- Carousel Section end -->
 
+{% endblock carousel %}
+
+{% block footer %}
+
     <!-- Footer start -->
     <footer>
       <div class="container">
@@ -152,3 +167,5 @@
     <script type="text/javascript" src="static/app.js"></script>
   </body>
 </html>
+
+{% endblock footer %}
