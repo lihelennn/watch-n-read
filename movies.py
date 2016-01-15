@@ -2,14 +2,6 @@ import json, urllib2, utils
 #tmdb api key https://api.themoviedb.org/3/movie/550?api_key=###
 #0adca0f6cd83c5390b72d746f4df63e7
 
-#key: ab64222e93da26b4aba758d80daa792810d18ecd for idreambook
-#link: http://idreambooks.com/api/books/reviews.json?q={keywords}&key={yourAPIkey}
-
-#LibraryThing key: 4a17e93e48c8dee63d4b797ab52458bf
-#link: http://www.librarything.com/services/rest/1.1/?[method_name]& [arguments as key=value separated by ampersands]&apikey=[your developer key]
-
-
-
 def searchMovie(query):
     """
     Searches a movie by a String query using TMDB API
@@ -47,12 +39,10 @@ def getMovieReview(id):
          ID: an integer we get from searchMovie()
 
     Returns:
-         A list of reviews
-    """
-    aurl="""https://api.themoviedb.org/3/review/%s/?api_key=0adca0f6cd83c5390b72d746f4df63e7
+         A list of reviews, containing viewer's name and the review's content
     """
     url = """
-    https://api.themoviedb.org/3/review/query=%s&api_key=0adca0f6cd83c5390b72d746f4df63e7
+    https://api.themoviedb.org/3/movie/%s?api_key=0adca0f6cd83c5390b72d746f4df63e7
     """
     url=url%(str(id))
 
@@ -61,13 +51,12 @@ def getMovieReview(id):
     r = json.loads(result)
     print r
     reviewlist = []
-    for movie in r['results']:
+    for review in r['results']:
         newlist = []
-        newlist += movie['media_title']
-        newlist += movie['content']
+        newlist += review['author']
+        newlist += review['content']
         reviewlist += newlist
     return reviewlist
 
-#https://api.themoviedb.org/3/review/<MOVIE ID NUMBER GOES HERE>/?api_key=0adca0f6cd83c5390b72d746f4df63e7
 #print searchMovie('harry potter')
-print getMovieReview(54507)
+print getMovieReview(49026)
