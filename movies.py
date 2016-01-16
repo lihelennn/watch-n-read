@@ -42,21 +42,21 @@ def getMovieReview(id):
          A list of reviews, containing viewer's name and the review's content
     """
     url = """
-    https://api.themoviedb.org/3/movie/%s?api_key=0adca0f6cd83c5390b72d746f4df63e7
+    https://api.themoviedb.org/3/movie/%s/reviews?api_key=0adca0f6cd83c5390b72d746f4df63e7
     """
     url=url%(str(id))
 
     request_url = urllib2.urlopen(url) ##ERROR HERE
     result = request_url.read()
     r = json.loads(result)
-    print r
+    rlist = r['results']
     reviewlist = []
-    for review in r['results']:
-        newlist = []
-        newlist += review['author']
-        newlist += review['content']
-        reviewlist += newlist
+    for review in rlist:
+        data = {}
+        data['author'] = review['author']
+        data['content'] = review['content']
+        reviewlist.append(data)
     return reviewlist
 
 #print searchMovie('harry potter')
-print getMovieReview(49026)
+#print getMovieReview(49026)
