@@ -39,7 +39,7 @@ def getMovieReview(id):
          ID: an integer we get from searchMovie()
 
     Returns:
-         A list of reviews, containing viewer's name and the review's content
+         A list of dictionary reviews, containing the keys 'name' and 'content'
     """
     url = """
     https://api.themoviedb.org/3/movie/%s/reviews?api_key=0adca0f6cd83c5390b72d746f4df63e7
