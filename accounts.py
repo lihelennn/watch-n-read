@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 def isValid(username, password):
     connection=MongoClient()
@@ -57,6 +58,7 @@ def getAllPosts():
     cursor=db.posts.find()
     postlist=[]
     for post in cursor:
+        print post
         postlist+=[ [ str(post['username']), str(post['title']), str(post['content']) ] ]
     return postlist
 
@@ -64,8 +66,8 @@ def newComment(username, comment, postID):
     connection = MongoClient()
     db = connection.wnr
 
-    cursor=db.posts.find({"_id": postID})
-    db.comments.update_one({"$set":{postID: [{"username":username, "comment": comment}]}})
+    cursor=db.posts.find({"_id": ObjectId(postID)})
+    db.comments.insert_one({postID:{"username":username, "comment": comment}]}})
 
 def getCommentsByPostID(postID):
     connection = MongoClient()
@@ -77,13 +79,12 @@ def getCommentsByPostID(postID):
         print doc
 
 
-newPost("Tony","hai","post here")
-newPost("Tony","nothing","post here1")
-newPost("Tony","not","post here2")
-newPost("Mario","hai","post here")
-newPost("Bowser","hai","....5")
-newPost("Wario","wow","waaahhhh")
-newPost("Luigo","rio","riiiiiiiiiiiiiio")
-#newComment("tony","this sucks",)
-
-print getAllPosts()
+#newPost("Tony","hai","post here")
+#newPost("Tony","nothing","post here1")
+#newPost("Tony","not","post here2")
+#newPost("Mario","hai","post here")
+#newPost("Bowser","hai","....5")
+#newPost("Wario","wow","waaahhhh")
+#newPost("Luigo","rio","riiiiiiiiiiiiiio")
+newComment("tony","this sucks","569920747fc12f2059eea253")
+getCommentsByPostID("569920747fc12f2059eea253")
