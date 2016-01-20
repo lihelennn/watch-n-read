@@ -66,18 +66,18 @@ def newComment(username, comment, postID):
     connection = MongoClient()
     db = connection.wnr
 
-    cursor=db.posts.find({"_id": ObjectId(postID)})
-    db.comments.insert_one({postID:{"username":username, "comment": comment}]}})
+    db.comments.insert_one({postID:{"username":username, "comment": comment}})
 
 def getCommentsByPostID(postID):
     connection = MongoClient()
     db= connection.wnr
-
+   # db.wnr.remove({})
     cursor=db.comments.find()
-    
+    comments=[]
     for doc in cursor:
-        print doc
-
+        comments.append(doc[postID])
+    return comments
+            
 
 #newPost("Tony","hai","post here")
 #newPost("Tony","nothing","post here1")
