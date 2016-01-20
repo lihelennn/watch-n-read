@@ -28,34 +28,44 @@
       width: 70%;
       margin: auto;
       }
+      <!--
+	  body {
+	  position: relative;
+	  }
+	  ul.nav-pills {
+	  top: 20px;
+	  position: fixed;
+	  }
+	  div.col-sm-9 div {
+	  height: 250px;
+	  font-size: 28px;
+	  }
+	-->
       
     </style>
 
   </head>
 
-{% endblock beginning %}
+  {% endblock beginning %}
 
-{% block beginning2 %}
+  {% block beginning2 %}
   <body>
-
+    
     <div class="jumbotron home home-fullscreen" id="home">
       <div class="mask"></div>
-      <!--<a href="#" class="logo">
-	<img src="http://www.clipartpal.com/_thumbs/pd/education/large_open_book.png" height="42" width="42" alt="Moderno - Theme by GraphBerry.com">
-      </a>-->
+      
       <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
+
       <!-- Offsite navigation -->
       <nav class="menu">
-	<a href="#" class="close"><i class="fa fa-close"></i></a>
+	<a href="/index1" class="active"><i class="fa fa-close"></i></a>
 	<h3>Menu</h3>
 	<ul class="nav">
 	  <li><a data-scroll href="/index1">Home</a></li>
 	  <li><a data-scroll href="/login">Login</a></li>
 	</ul>
-	<ul class="social-icons">
-	  <li><a href=""><i class="fa fa-facebook"></i></a></li>
-	</ul>
       </nav>
+
       <div class="container">
 	<div class="header-info">
 	  <h1>watch-n-read</h1>
@@ -86,9 +96,9 @@
 
     <!-- Search form end -->
 
-{% endblock beginning2 %}
+    {% endblock beginning2 %}
 
-{% block carousel %}
+    {% block carousel %}
 
     <!--Carousel section start -->
     <section id="services">
@@ -136,9 +146,9 @@
     </section>
     <!-- Carousel Section end -->
 
-{% endblock carousel %}
+    {% endblock carousel %}
 
-{% block footer %}
+    {% block footer %}
 
     <!-- Footer start -->
     <footer>
