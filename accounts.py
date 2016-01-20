@@ -2,6 +2,20 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 def isValid(username, password):
+    """
+    Validates username and password combo
+
+    Params:
+         username: a String of the user's username
+
+         password: a String of the user's password
+
+    Returns:
+         True
+              if valid combo
+         False
+              otherwise
+    """
     connection=MongoClient()
     db=connection.wnr
     
@@ -18,6 +32,20 @@ def isValid(username, password):
     return False
 
 def newUser(username,password):
+    """
+    Creates a new user
+
+    Params:
+         username: a String of the user's desired username
+
+         password: a String of the user's desired password
+
+    Returns:
+         True
+              if the username doesn't already exist
+         False
+              otherwise
+    """
     connection = MongoClient()
     db = connection.wnr
     
@@ -34,13 +62,41 @@ def newUser(username,password):
     return True
 
 def newPost(username, title, post):
-   
+    """
+    Creates a new post
+
+    Params:
+         username: a String of the poster's username
+
+         title: a String of the post's title
+
+         post: a String of the contents of the post
+
+    Returns:
+         VOID
+    """
     connection = MongoClient()
     db=connection.wnr
     username=username.lower()
     db.posts.insert_one({"username": username, "title":title, "content":post})
     
 def getPostsFromUser(username):
+    """
+    Gets a list of all posts and their information from a user
+
+    Params:
+         username: a String of the user's username
+
+    Returns:
+         A list of dictionaries.
+         [ { 
+              <String> id: 
+              <String> title: 
+              <String> content 
+           },
+           ... 
+         ]
+    """
     connection = MongoClient()
     db = connection.wnr
     
@@ -48,10 +104,29 @@ def getPostsFromUser(username):
     cursor=db.posts.find({"username": username})
     postlist = []
     for posts in cursor:
-        postlist += [ [ str(post['username']), str(post['title']), str(post['content']) ] ]
+        postlist.append( { 'id':str(post['_id'].valueOf()), 
+                           'title':str(post['title']), 
+                           'content':str(post['content'])})
     return postlist
 
 def getAllPosts():
+    """
+    Gets a list of all posts in the database
+
+    Params:
+         NONE
+
+    Returns:
+         A list of dictionaries.
+         [ { 
+              <String> id: 
+              <String> username:
+              <String> title: 
+              <String> content 
+           },
+           ... 
+         ]
+    """
     connection = MongoClient()
     db = connection.wnr
 
@@ -59,16 +134,50 @@ def getAllPosts():
     postlist=[]
     for post in cursor:
         print post
-        postlist+=[ [ str(post['username']), str(post['title']), str(post['content']) ] ]
+        postlist.append( { 'id':str(post['_id'].valueOf()), 
+                           'username': str(post['username']), 
+                           'title':str(post['title']), 
+                           'content':str(post['content']) } )
     return postlist
 
 def newComment(username, comment, postID):
+    """
+    Creates a new comment
+
+    Params:
+         username: a String of the poster's username
+
+         comment: a String of the comment's contents
+
+         postID: a String of the id of the post
+
+    Returns:
+         VOID
+    """
     connection = MongoClient()
     db = connection.wnr
 
     db.comments.insert_one({postID:{"username":username, "comment": comment}})
 
 def getCommentsByPostID(postID):
+    """
+    Gets all the comments of a post based on postID.
+
+    Params:
+
+         postID: a String of the id of the post
+
+    Returns:
+         A list of dictionaries.
+
+         [
+          {
+               'username':
+               'comment':
+          },
+          ...
+         ]
+    """
     connection = MongoClient()
     db= connection.wnr
    # db.wnr.remove({})
