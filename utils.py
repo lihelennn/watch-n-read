@@ -11,11 +11,11 @@ def spaceConverter(query):
 
 def reviewEvaluation(text):
     """
-    Will analyze the number of good/bad words and return a ratio good:bad
+    Will analyze the number of good/bad words and return a ratio good:total
     Params:
         text - (String) Text coming from the content of the review
     Returns:
-        ratio - (Float) A ratio of good to bad words
+        ratio - (Float) A ratio of good to total words
     """
 
     ratio = 0
@@ -23,11 +23,12 @@ def reviewEvaluation(text):
     results = re.finall(exp, text)
     numofwords = len(results)
 
-    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)"
+    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)|([Ff]avorite)"
     goodresults = re.findall(exp, text)
     
-    exp = "([Nn]o)|([Nn]ot)|([Tt]oo)|([Dd]idn't)|([Dd]oesn't)|([B]bad)|([Tt]errible)"
-    badresults = re.findall(exp, text)
-    ratio = len(goodresults)/len(badresults)
+    ratio = len(goodresults)/numofwords
     return ratio
 
+#JAVASCRIPT NEEDED TO GET TEXT FROM IFRAME
+#var myIFrame = document.getElementById("myIframe");
+#var content = myIFrame.contentWindow.document.body.innerHTML;
