@@ -184,7 +184,8 @@ def getCommentsByPostID(postID):
     cursor=db.comments.find()
     comments=[]
     for doc in cursor:
-        comments.append(doc[postID])
+        comments.append({'username':str(doc[postID]['username']),
+                         'comment':str(doc[postID]['comment'])})
     return comments
             
 
@@ -195,5 +196,5 @@ def getCommentsByPostID(postID):
 #newPost("Bowser","hai","....5")
 #newPost("Wario","wow","waaahhhh")
 #newPost("Luigo","rio","riiiiiiiiiiiiiio")
-newComment("tony","this sucks","569920747fc12f2059eea253")
-getCommentsByPostID("569920747fc12f2059eea253")
+#newComment("tony","this sucks","569920747fc12f2059eea253")
+#print getCommentsByPostID("569920747fc12f2059eea253")

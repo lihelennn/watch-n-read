@@ -15,10 +15,18 @@ def index1():
 
 #testing html template ends
 
-#@app.route("/board", methods = ['GET','POST'])
-#def board():
-
-
+@app.route("/board", methods = ['GET','POST'])
+def board():
+    #use this in html where the posts go
+    """
+    {% for post in posts %}
+    <h2>{{post["title"]}}</h2><br><br>
+    OP:{{post["username"]}}
+    <br>
+    {% endfor %}
+    """
+    posts = accounts.getAllPost()
+   return render_template("board.html",posts)                    
     
 @app.route("/new", methods = ['GET','POST'])
 def new():
@@ -37,7 +45,7 @@ def new():
 #@app.route("/thread", methods = ['GET','POST'])
 #@app.route("/thread/<title>", methods = ['GET','POST'])
 #def thread(title=''):
-    
+
 @app.route("/create", methods = ['GET', 'POST'])
 def create():
     if request.method == 'GET':
