@@ -23,7 +23,6 @@ def isValid(username, password):
     cursor=db.users.find({'username':username, 'password': password})
     userlist=[]
     for doc in cursor:
-        print doc
         for i in doc:
             userlist+=[str(i)]
 
@@ -104,7 +103,7 @@ def getPostsFromUser(username):
     cursor=db.posts.find({"username": username})
     postlist = []
     for posts in cursor:
-        postlist.append( { 'id':str(post['_id'].valueOf()), 
+        postlist.append( { 'id':str(post['_id']), 
                            'title':str(post['title']), 
                            'content':str(post['content'])})
     return postlist
@@ -133,8 +132,7 @@ def getAllPosts():
     cursor=db.posts.find()
     postlist=[]
     for post in cursor:
-        print post
-        postlist.append( { 'id':str(post['_id'].valueOf()), 
+        postlist.append( { 'id':str(post['_id']), 
                            'username': str(post['username']), 
                            'title':str(post['title']), 
                            'content':str(post['content']) } )
@@ -189,12 +187,13 @@ def getCommentsByPostID(postID):
     return comments
             
 
-#newPost("Tony","hai","post here")
-#newPost("Tony","nothing","post here1")
-#newPost("Tony","not","post here2")
-#newPost("Mario","hai","post here")
+newPost("Tony","hai","post here")
+newPost("Tony","nothing","post here1")
+newPost("Tony","not","post here2")
+newPost("Mario","hai","post here")
 #newPost("Bowser","hai","....5")
 #newPost("Wario","wow","waaahhhh")
 #newPost("Luigo","rio","riiiiiiiiiiiiiio")
 #newComment("tony","this sucks","569920747fc12f2059eea253")
 #print getCommentsByPostID("569920747fc12f2059eea253")
+print getAllPosts()
