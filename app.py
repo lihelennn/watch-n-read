@@ -8,7 +8,6 @@ app = Flask(__name__)
 def index1():
     return render_template("index1.html")
 
-
 #@app.route("/login")
 #def login():
 #    return render_template("login.html")
@@ -18,16 +17,34 @@ def index1():
 @app.route("/board", methods = ['GET','POST'])
 def board():
     #use this in html where the posts go
+    str=""
+    posts = accounts.getAllPost()    
+    for post in posts:
+        str+= "<h2> <a href='thread/%s'> %s</a> </h2>" %(post["id"], post["title"])
+        str+="<br><br>OP:"+post["username"]+"<br>"
+    str= Markup(str)
+    return render_template("board.html",str)
+#
+#
+#
+@app.route("/thread", methods = ['GET','POST'])
+@app.route("/thread/<id>", methods = ['GET','POST'])
+def thread(id=''):                    
+    post = getPostByPostId(id)
+    comments = getCommentsByPostID(id)
+
     """
-    {% for post in posts %}
-    <h2>{{post["title"]}}</h2><br><br>
-    OP:{{post["username"]}}
-    <br>
-    {% endfor %}
-    """
-    posts = accounts.getAllPost()
-   return render_template("board.html",posts)                    
-    
+    str=""
+    for comment in comments:
+        str+= comment["username"] + comment["comment"]    
+        str= Markup(str)
+        """
+
+    return render_template("thread.html", comments)
+#
+#
+#
+>>>>>>> Stashed changes
 @app.route("/new", methods = ['GET','POST'])
 def new():
     if request.method=="GET":
@@ -41,10 +58,6 @@ def new():
         #button=request.form['button']
         #if button=="Submit":
         return redirect('/thread/%s' %title)
-
-#@app.route("/thread", methods = ['GET','POST'])
-#@app.route("/thread/<title>", methods = ['GET','POST'])
-#def thread(title=''):
 
 @app.route("/create", methods = ['GET', 'POST'])
 def create():

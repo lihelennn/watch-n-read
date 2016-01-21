@@ -1,8 +1,65 @@
-<!DOCTYPE HTML>
-<form method="POST">
-  Username<input type="text" name="uname">
-  Password<input type="password" name="pword">
-  <input type="submit" value="Submit">
-</form>
+{% extends "index1.html" %}
 
+{% block beginning2 %}
+<body>
+
+  <div class="jumbotron home home-fullscreen" id="home">
+    <div class="mask"></div>
+    <!--<a href="#" class="logo">
+	<img src="http://www.clipartpal.com/_thumbs/pd/education/large_open_book.png" height="42" width="42" alt="Moderno - Theme by GraphBerry.com">
+    </a>-->
+    <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
+    <!-- Offsite navigation -->
+    <nav class="menu">
+      <a href="#" class="close"><i class="fa fa-close"></i></a>
+      <h3>Menu</h3>
+      <ul class="nav">
+	<li><a href="/index1">Home</a></li>
+	<li><a href="/login">Login</a></li>
+      </ul>
+      <ul class="social-icons">
+	<li><a href=""><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="header-info">
+	<h1>watch-n-read</h1>
+	<p>Should you read the book or watch the movie?<br>Compare book and movie reviews!
+	</p><br>
+	<h2>Create An Account</h2>
+
+	<!-- Login form start -->
+	<center>
+	  <form class="form-horizontal" role="form" method="POST">
+	    <div class="form-group">
+	      <!--<label class="control-label col-sm-2" for="search">Username:</label>-->
+	      <!--<div class="col-xs-6">-->
+	      <div class="col-xs-offset-3 col-sm-6">
+		<input type="text" class="form-control" name="name" id="name" placeholder="Enter your full name">
+		<br>
+		<input type="text" class="form-control" name="uname" id="uname" placeholder="Enter a username">
+		<br>
+		<input type="text" class="form-control" name="pword" id="pword" placeholder="Enter a password">
+	      </div>
+	    </div>
+
+	    <div class="form-group">
+	      <!--<div class="col-xs-offset-2 col-sm-4">-->
+	      <div class="col-xs-offset-4 col-xs-4">
+		<center><button type="submit" class="btn-danger btn-sm btn-sm">Create</button></center>
+	      </div>
+	    </div>
+	  </form>
+	</center>
+      </div>
+    </div>
+  </div>
+
+<!--{{error}}-->
 {{msg}}
+
+  <!-- Login form end -->
+
+  {% endblock beginning2 %}
+
+
