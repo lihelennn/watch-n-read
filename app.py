@@ -26,7 +26,7 @@ def board():
     {% endfor %}
     """
     posts = accounts.getAllPost()
-   return render_template("board.html",posts)                    
+    return render_template("board.html",posts)                    
     
 @app.route("/new", methods = ['GET','POST'])
 def new():
