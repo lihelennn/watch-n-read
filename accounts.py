@@ -78,6 +78,15 @@ def newPost(username, title, post):
     db=connection.wnr
     username=username.lower()
     db.posts.insert_one({"username": username, "title":title, "content":post})
+
+def getPostByPostID(postID):
+    connection = MongoClient()
+    db=connection.wnr
+    a=ObjectId(postID)
+    
+    cursor=db.posts.find({'_id':ObjectId(postID)})
+    for doc in cursor:
+        return doc
     
 def getPostsFromUser(username):
     """
@@ -187,13 +196,13 @@ def getCommentsByPostID(postID):
     return comments
             
 
-newPost("Tony","hai","post here")
-newPost("Tony","nothing","post here1")
-newPost("Tony","not","post here2")
-newPost("Mario","hai","post here")
+#newPost("Tony","hai","post here")
+#newPost("Tony","nothing","post here1")
+#newPost("Tony","not","post here2")
+#newPost("Mario","hai","post here")
 #newPost("Bowser","hai","....5")
 #newPost("Wario","wow","waaahhhh")
 #newPost("Luigo","rio","riiiiiiiiiiiiiio")
 #newComment("tony","this sucks","569920747fc12f2059eea253")
-#print getCommentsByPostID("569920747fc12f2059eea253")
-print getAllPosts()
+print getPostByPostID("569920747fc12f2059eea253")
+#print getAllPosts()
