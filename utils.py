@@ -23,10 +23,14 @@ def reviewEvaluation(text):
     results = re.finall(exp, text)
     numofwords = len(results)
 
-    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)|([Ff]avorite)"
+    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)|([Ff]avorite)|([^s][Ll]ike)|([Aa]stonish)|([Bb]reathtaking)|([Ll]ove)|([Ww]onderful)|([Ee]ngaging)|([Hh]ighly recommended)|([Ww]ould recommend)|([Ee]njoy)|([Cc]an't wait)|([Ee]xciting)|([Ff]un)|([Cc]ool)"
     goodresults = re.findall(exp, text)
-    
     ratio = len(goodresults)/numofwords
+
+    exp = "([Nn]o)|([Nn]ot)|([Tt]oo)|([Dd]idn't)|([Dd]oesn't)|([Cc]an't)|([Cc]annot)|([B]bad)|([Tt]errible)|([Bb]oring)|([Ff]fail)|([Hh]orrible)|([Hh]orrendous)|([Pp]oor)|([Ss]hoddy)|([Ss]tupid)|([Uu]gly)|([Uu]npleasant)|([Aa]nnoy)|([Ii]nconsist)|([Hh]ard)|([Hh]ate)"
+    badresults = re.findall(exp, text)
+    badratio = len(badresults)/numofwords
+    
     return ratio
 
 #JAVASCRIPT NEEDED TO GET TEXT FROM IFRAME
