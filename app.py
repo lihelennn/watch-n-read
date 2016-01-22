@@ -17,34 +17,29 @@ def index1():
 @app.route("/board", methods = ['GET','POST'])
 def board():
     #use this in html where the posts go
-    str=""
     posts = accounts.getAllPost()    
-    for post in posts:
-        str+= "<h2> <a href='thread/%s'> %s</a> </h2>" %(post["id"], post["title"])
-        str+="<br><br>OP:"+post["username"]+"<br>"
-    str= Markup(str)
-    return render_template("board.html",str)
+    return render_template("board.html",post)
 #
 #
 #
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
 def thread(id=''):                    
-    post = getPostByPostId(id)
-    comments = getCommentsByPostID(id)
+    post = accounts.getPostByPostId(id)
+    comments = accounds.getCommentsByPostID(id)
 
     """
     str=""
     for comment in comments:
         str+= comment["username"] + comment["comment"]    
         str= Markup(str)
-        """
+    """
 
-    return render_template("thread.html", comments)
+    return render_template("thread.html", comments, post)
 #
 #
 #
->>>>>>> Stashed changes
+
 @app.route("/new", methods = ['GET','POST'])
 def new():
     if request.method=="GET":
