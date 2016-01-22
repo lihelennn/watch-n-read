@@ -25,7 +25,7 @@ Stuyvesant High School
 ## Run
   - python app.py
 
-## links
+## Links
   - / : homepage to search a book
   - /create : create page for account to online forum
   - /login : login page for account to online forum
