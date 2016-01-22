@@ -20,7 +20,7 @@ Stuyvesant High School
   - Create an online forum for people to discuss books/movies.
 
 ## Instructions
-  - import flask
+  - pip install flask
   
 ## Run
   - python app.py
