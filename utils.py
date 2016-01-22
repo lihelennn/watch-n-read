@@ -20,18 +20,20 @@ def reviewEvaluation(text):
 
     ratio = 0
     exp = "[a-zA-Z]+"
-    results = re.finall(exp, text)
+    results = re.findall(exp, text)
     numofwords = len(results)
 
-    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)|([Ff]avorite)|([^s][Ll]ike)|([Aa]stonish)|([Bb]reathtaking)|([Ll]ove)|([Ww]onderful)|([Ee]ngaging)|([Hh]ighly recommended)|([Ww]ould recommend)|([Ee]njoy)|([Cc]an't wait)|([Ee]xciting)|([Ff]un)|([Cc]ool)"
+    exp = "([Yy]es)|([Gg]ood)|([Aa]wesome)|([Gg]reat)|([Bb]est)|([Aa]mazing)|([Ff]avorite)|([^s][Ll]ike)|([Aa]stonish)|([Bb]reathtaking)|([Ll]ove)|([Ww]onderful)|([Ee]ngaging)|([Hh]ighly recommended)|([Ww]ould recommend)|([Ee]njoy)|([Cc]an't wait)|([Ee]xciting)|([Ff]un)|([Cc]ool)|([Hh]ilarious)|([Pp]rofound)"
     goodresults = re.findall(exp, text)
-    ratio = len(goodresults)/numofwords
+    ratio = 1.0 * len(goodresults)/numofwords
 
     exp = "([Nn]o)|([Nn]ot)|([Tt]oo)|([Dd]idn't)|([Dd]oesn't)|([Cc]an't)|([Cc]annot)|([B]bad)|([Tt]errible)|([Bb]oring)|([Ff]fail)|([Hh]orrible)|([Hh]orrendous)|([Pp]oor)|([Ss]hoddy)|([Ss]tupid)|([Uu]gly)|([Uu]npleasant)|([Aa]nnoy)|([Ii]nconsist)|([Hh]ard)|([Hh]ate)"
     badresults = re.findall(exp, text)
-    badratio = len(badresults)/numofwords
+    badratio = 1.0 * len(badresults)/numofwords
     
-    return ratio
+    return 1 - badratio
+
+print reviewEvaluation("""Hemingway said American fiction begins and ends with Huck Finn, and he's right. Twain's most famous novel is a tour de force. He delves into issues such as racism, friendship, war, religion, and freedom with an uncanny combination of lightheartedness and gravitas. There are several moments in the book that are hilarious, but when I finished the book, I knew I had read something profound. This is a book that everyone should read.""")
 
 #JAVASCRIPT NEEDED TO GET TEXT FROM IFRAME
 #var myIFrame = document.getElementById("myIframe");
