@@ -8,12 +8,6 @@ app = Flask(__name__)
 def index1():
     return render_template("index1.html")
 
-#@app.route("/login")
-#def login():
-#    return render_template("login.html")
-
-#testing html template ends
-
 @app.route("/board", methods = ['GET','POST'])
 def board():
     #use this in html where the posts go
@@ -22,6 +16,7 @@ def board():
 #
 #
 #
+
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
 def thread(id=''):                    
@@ -35,10 +30,14 @@ def thread(id=''):
         str= Markup(str)
     """
 
+<<<<<<< HEAD
     return render_template("thread.html", comments, post)
 #
 #
 #
+=======
+    return render_template("thread.html", comments)
+>>>>>>> 6fefb49d4e6953ac3ea3c77e8deae545a1e2c20c
 
 @app.route("/new", methods = ['GET','POST'])
 def new():
@@ -86,14 +85,14 @@ def login():
 @app.route("/", methods = ['GET','POST'])
 def index():
     if request.method == 'GET':
-        return render_template("index.html")
+        return render_template("index1.html")
 
     else:
         query = request.form["search"].encode('utf-8')
         #session['query']=query
         return redirect(url_for("results",query=query))
        
-    return render_template("index.html")
+    return render_template("index1.html")
         
 @app.route("/results", methods = ['GET','POST'])
 @app.route("/results/<query>", methods = ['GET','POST'])
