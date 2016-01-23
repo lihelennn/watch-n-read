@@ -1,6 +1,18 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+"""
+DATABASE SCHEMA
+
+Users: username and password
+
+Posts: username(of the poster) ; title ; content
+
+Comments: username(of the commenter) ; content ; postID(of the post in which the comment resides)
+
+"""
+
+
 def isValid(username, password):
     """
     Validates username and password combo
@@ -147,6 +159,31 @@ def getAllPosts():
                            'content':str(post['content']) } )
     return postlist
 
+def getPostIDByUsernameTitle(username, title):
+    """
+    returns a string that is a posts objectID
+
+    Params:
+         username: a string that is the username of the poster
+         
+         title: a string that is the title of the post
+
+    Returns:
+         postID: a string that is the objectID of the post
+    """
+
+    postID = ""
+
+    connection = MongoClient()
+    db = connection.wnr
+    
+    username = username.lower()
+    cursor=db.posts.find({"username": username, "title": title})
+
+    for post in cursor:
+        postID = str(post['_id'])
+    return postID
+
 def newComment(username, comment, postID):
     """
     Creates a new comment
@@ -204,5 +241,6 @@ def getCommentsByPostID(postID):
 #newPost("Wario","wow","waaahhhh")
 #newPost("Luigo","rio","riiiiiiiiiiiiiio")
 #newComment("tony","this sucks","569920747fc12f2059eea253")
-#print getPostByPostID("569920747fc12f2059eea253")
+print getPostIDByUsernameTitle("Tony", "hai")
+print getPostByPostID(getPostIDByUsernameTitle("Tony", "hai"))
 #print getAllPosts()
