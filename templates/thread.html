@@ -1,0 +1,14 @@
+{{post["title"]}}
+<br>
+{{post["userneme"]}}
+<br>
+{{post["content"]}}
+<br>
+
+{% for comment in comments %}
+    OP:{{comment["username"]}}
+    <br>
+{{comment["comment"]}}
+
+{% endfor %}
+

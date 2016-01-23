@@ -18,7 +18,7 @@ def board():
 @app.route("/thread/<id>", methods = ['GET','POST'])
 def thread(id=''):                    
     post = accounts.getPostByPostID(id)
-    comments = accounds.getCommentsByPostID(id)
+    comments = accounts.getCommentsByPostID(id)
 
     """
     str=""
@@ -26,7 +26,7 @@ def thread(id=''):
         str+= comment["username"] + comment["comment"]    
         str= Markup(str)
     """
-    return render_template("thread.html", comments=comments, posts=posts)
+    return render_template("thread.html", comments=comments, post=post)
 
 
 @app.route("/new", methods = ['GET','POST'])
