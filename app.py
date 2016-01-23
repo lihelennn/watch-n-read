@@ -11,16 +11,13 @@ def index1():
 @app.route("/board", methods = ['GET','POST'])
 def board():
     #use this in html where the posts go
-    posts = accounts.getAllPost()    
-    return render_template("board.html",posts=post)
-#
-#
-#
+    posts = accounts.getAllPosts()    
+    return render_template("board.html",posts=posts)
 
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
 def thread(id=''):                    
-    post = accounts.getPostByPostId(id)
+    post = accounts.getPostByPostID(id)
     comments = accounds.getCommentsByPostID(id)
 
     """
