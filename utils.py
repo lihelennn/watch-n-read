@@ -33,8 +33,6 @@ def reviewEvaluation(text):
     
     return 1 - badratio
 
-print reviewEvaluation("""Hemingway said American fiction begins and ends with Huck Finn, and he's right. Twain's most famous novel is a tour de force. He delves into issues such as racism, friendship, war, religion, and freedom with an uncanny combination of lightheartedness and gravitas. There are several moments in the book that are hilarious, but when I finished the book, I knew I had read something profound. This is a book that everyone should read.""")
-
 #JAVASCRIPT NEEDED TO GET TEXT FROM IFRAME
 #var myIFrame = document.getElementById("myIframe");
 #var content = myIFrame.contentWindow.document.body.innerHTML;
