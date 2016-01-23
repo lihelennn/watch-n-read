@@ -12,7 +12,7 @@ def index1():
 def board():
     #use this in html where the posts go
     posts = accounts.getAllPost()    
-    return render_template("board.html",post)
+    return render_template("board.html",posts=post)
 #
 #
 #
@@ -29,15 +29,8 @@ def thread(id=''):
         str+= comment["username"] + comment["comment"]    
         str= Markup(str)
     """
+    return render_template("thread.html", comments=comments, posts=posts)
 
-<<<<<<< HEAD
-    return render_template("thread.html", comments, post)
-#
-#
-#
-=======
-    return render_template("thread.html", comments)
->>>>>>> 6fefb49d4e6953ac3ea3c77e8deae545a1e2c20c
 
 @app.route("/new", methods = ['GET','POST'])
 def new():

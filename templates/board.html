@@ -1,4 +1,6 @@
 {% for post in posts %}
-    <h2><a href="thread/{{post["id"]}}">{{post["title"]}}</a></h2><br><br>
+    <h2><a href="thread/{{post["id"]}}">{{post["title"]}}</a></h2>
+    <br>
+    <br>
     OP:{{post["username"]}}
 {% endfor %}
