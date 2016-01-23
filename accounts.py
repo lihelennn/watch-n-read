@@ -96,7 +96,7 @@ def getPostByPostID(postID):
     db=connection.wnr
     a=ObjectId(postID)
     
-    cursor=db.posts.find({'_id':ObjectId(postID)})
+    cursor=db.posts.find_one({'_id':ObjectId(postID)})
     for doc in cursor:
         return doc
     
