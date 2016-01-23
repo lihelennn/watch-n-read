@@ -24,8 +24,11 @@ def thread(id=''):
 
         return render_template("thread.html", comments=comments, post=post)
     else:
+        #needs a form
         content = request.form["content"]
-        return redirect(url_for("results/%s",%(id))
+        uname=session['uname']
+        account.newComment(uname, content, id)
+        return redirect(url_for("thread/%s",%(id))
 
 @app.route("/new", methods = ['GET','POST'])
 def new():
