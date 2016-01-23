@@ -8,6 +8,8 @@ app = Flask(__name__)
 def index1():
     return render_template("index1.html")
 
+###
+
 @app.route("/board", methods = ['GET','POST'])
 def board():
     #use this in html where the posts go
@@ -117,15 +119,3 @@ if __name__ == "__main__":
    app.debug = True
    app.secret_key="watch-n-read"
    app.run(host="0.0.0.0", port=8000)
-
-#takes string, returns dictionary with keys: title, author, desc(description)
-#books.searchBook(query)
-
-#takes string, returns dictionary with keys: title, overview, id
-#movies.searchMovie(query)
-
-#uses id to get review, returns ???
-#movies.getReview(id)
-
-#tmdb api key https://api.themoviedb.org/3/movie/550?api_key=###
-#0adca0f6cd83c5390b72d746f4df63e7

@@ -241,6 +241,6 @@ def getCommentsByPostID(postID):
 #newPost("Wario","wow","waaahhhh")
 #newPost("Luigo","rio","riiiiiiiiiiiiiio")
 #newComment("tony","this sucks","569920747fc12f2059eea253")
-print getPostIDByUsernameTitle("Tony", "hai")
-print getPostByPostID(getPostIDByUsernameTitle("Tony", "hai"))
+#print getPostIDByUsernameTitle("Tony", "hai")
+#print getPostByPostID(getPostIDByUsernameTitle("Tony", "hai"))
 #print getAllPosts()
