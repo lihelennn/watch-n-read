@@ -124,7 +124,7 @@ def getPostsFromUser(username):
     cursor=db.posts.find({"username": username})
     postlist = []
     for posts in cursor:
-        postlist.append( { 'id':str(post['_id']), 
+        postlist.append( { 'postID':str(post['_id']), 
                            'title':str(post['title']), 
                            'content':str(post['content'])})
     return postlist
@@ -153,7 +153,7 @@ def getAllPosts():
     cursor=db.posts.find()
     postlist=[]
     for post in cursor:
-        postlist.append( { 'id':str(post['_id']), 
+        postlist.append( { 'postID':str(post['_id']), 
                            'username': str(post['username']), 
                            'title':str(post['title']), 
                            'content':str(post['content']) } )
@@ -228,8 +228,8 @@ def getCommentsByPostID(postID):
     cursor=db.comments.find({"postID":postID})
     comments=[]
 
-    for doc in cursor:
-        comments.append(doc)
+    for com in cursor:
+        comments.append(com)
     return comments
 
 #newPost("Tony","hai","post here")
