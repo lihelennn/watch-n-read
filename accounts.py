@@ -189,7 +189,7 @@ def newComment(username, comment, postID):
     Creates a new comment
 
     Params:
-         username: a String of the poster's username
+         username: a String of the commenter's username
 
          comment: a String of the comment's contents
 
@@ -201,7 +201,7 @@ def newComment(username, comment, postID):
     connection = MongoClient()
     db = connection.wnr
 
-    db.comments.insert_one({postID:{"username":username, "comment": comment}})
+    db.comments.insert_one({"username": username, "comment": comment, "postID": postID})
 
 def getCommentsByPostID(postID):
     """
@@ -225,13 +225,12 @@ def getCommentsByPostID(postID):
     connection = MongoClient()
     db= connection.wnr
    # db.wnr.remove({})
-    cursor=db.comments.find()
+    cursor=db.comments.find({"postID":postID})
     comments=[]
+
     for doc in cursor:
-        comments.append({'username':str(doc[postID]['username']),
-                         'comment':str(doc[postID]['comment'])})
+        comments.append(doc)
     return comments
-            
 
 #newPost("Tony","hai","post here")
 #newPost("Tony","nothing","post here1")
@@ -243,4 +242,5 @@ def getCommentsByPostID(postID):
 #newComment("tony","this sucks","569920747fc12f2059eea253")
 #print getPostIDByUsernameTitle("Tony", "hai")
 #print getPostByPostID(getPostIDByUsernameTitle("Tony", "hai"))
+#newComment("David", "my first comment", getPostIDByUsernameTitle("Tony", "hai"))
 #print getAllPosts()

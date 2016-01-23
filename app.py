@@ -12,24 +12,20 @@ def index1():
 
 @app.route("/board", methods = ['GET','POST'])
 def board():
-    #use this in html where the posts go
     posts = accounts.getAllPosts()    
     return render_template("board.html",posts=posts)
 
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
 def thread(id=''):                    
-    post = accounts.getPostByPostID(id)
-    comments = accounts.getCommentsByPostID(id)
+    if request.method=="GET":
+        post = accounts.getPostByPostID(id)
+        comments = accounts.getCommentsByPostID(id)
 
-    """
-    str=""
-    for comment in comments:
-        str+= comment["username"] + comment["comment"]    
-        str= Markup(str)
-    """
-    return render_template("thread.html", comments=comments, post=post)
-
+        return render_template("thread.html", comments=comments, post=post)
+    else:
+        content = request.form["content"]
+        return redirect(url_for("results/%s",%(id))
 
 @app.route("/new", methods = ['GET','POST'])
 def new():
@@ -81,7 +77,6 @@ def index():
 
     else:
         query = request.form["search"].encode('utf-8')
-        #session['query']=query
         return redirect(url_for("results",query=query))
        
     return render_template("index1.html")
@@ -90,25 +85,10 @@ def index():
 @app.route("/results/<query>", methods = ['GET','POST'])
 def results(query=""):
   if request.method == 'GET':
-      #query=request.args['query']
-      #query=session['query']
+
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
 
-      #???
-      """
-      bookInfo=""
-      for book in bookData:
-            bookInfo+=book['title']+'<br><br>'
-            for a in book['authors']:
-                bookInfo+=a.encode('utf-8')+'<br>'
-            bookInfo+=book['desc']+'<br><br>'
-
-      movieInfo=""
-      for movie in movieData:
-            movieInfo+=movie['title']+'<br><br>'
-            movieInfo+=movie['overview']+'<br><br>'
-      """
       return render_template("results.html", bookData = bookData, movieData=movieData)
   else:
       query = request.form["search"].encode('utf-8') 
