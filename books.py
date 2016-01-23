@@ -80,6 +80,3 @@ https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
     result = request_url.read()
     widget = getWidgetHelper(result)
     return widget
-
-#print searchBook("the hunger games")
-print getBookReview(9780552564267)
