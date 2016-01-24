@@ -33,6 +33,7 @@
     <h1>Movies</h1>
     {% for movie in movieData %}
     <h2>{{movie["title"]}}</h2><br><br>
+    Our Evaluation: {{movie["result"]}}<br>
     {{movie["overview"]}}<br><br>
     {% endfor %}
   </body>

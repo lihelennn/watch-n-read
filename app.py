@@ -28,22 +28,22 @@ def thread(id=''):
         content = request.form["content"]
         uname=session['uname']
         account.newComment(uname, content, id)
-        return redirect(url_for("thread/%s",%(id))
-
-@app.route("/new", methods = ['GET','POST'])
-def new():
-    if request.method=="GET":
-        return render_template("new.html")
-    else:
-        uname=session['uname']
-        title=request.form['title']
-        line=request.form['entry']
-        accounts.newPost(uname, title, line)
+        return redirect(url_for("thread/%s" %(id)))
+                        
+    @app.route("/new", methods = ['GET','POST'])
+    def new():
+        if request.method=="GET":
+            return render_template("new.html")
+        else:
+            uname=session['uname']
+            title=request.form['title']
+            line=request.form['entry']
+            accounts.newPost(uname, title, line)
         #for multiple buttons
-        #button=request.form['button']
-        #if button=="Submit":
-        return redirect('/thread/%s' %title)
-
+                        #button=request.form['button']
+                        #if button=="Submit":
+            return redirect('/thread/%s' %title)
+                        
 @app.route("/create", methods = ['GET', 'POST'])
 def create():
     if request.method == 'GET':
@@ -91,6 +91,18 @@ def results(query=""):
 
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
+  
+  for movie in movieData:
+      reviews = movies.getMovieReview(movie["id"])
+      result=0
+      for review in reviews:
+          result+=utils.reviewEvaluation(review["content"])
+      result/=len(reviews)
+      movie["result"]=result
+
+
+###regex stuff
+      utils.reviewEvaluation(text)
 
       return render_template("results.html", bookData = bookData, movieData=movieData)
   else:
