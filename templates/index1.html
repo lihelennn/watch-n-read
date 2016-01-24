@@ -25,22 +25,10 @@
     <style>
       .carousel-inner > .item > img,
       .carousel-inner > .item > a > img {
-      width: 70%;
+      width: 600px;
+      height: 400px;
       margin: auto;
       }
-      <!--
-	  body {
-	  position: relative;
-	  }
-	  ul.nav-pills {
-	  top: 20px;
-	  position: fixed;
-	  }
-	  div.col-sm-9 div {
-	  height: 250px;
-	  font-size: 28px;
-	  }
-	-->
       
     </style>
 
@@ -52,18 +40,35 @@
   <body>
     
     <div class="jumbotron home home-fullscreen" id="home">
+
       <div class="mask"></div>
       
       <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
-
+      
       <!-- Offsite navigation -->
-      <nav class="menu">
-	<a href="/index1" class="active"><i class="fa fa-close"></i></a>
-	<h3>Menu</h3>
-	<ul class="nav">
-	  <li><a href="/index1">Home</a></li>
-	  <li><a href="/login">Login</a></li>
-	</ul>
+      <!--<nav class="menu">
+	  <a href="/index1" class="active"><i class="fa fa-close"></i></a>
+	  <h3>Menu</h3>
+	  <ul class="nav">
+	    <li><a data-scroll href="/index1">Home</a></li>
+	    <li><a data-scroll href="/login">Login</a></li>
+	    <li><a data-scroll href="/create">Create An Account</a></li>
+	  </ul>
+	  
+	  
+      </nav>-->
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <a class="navbar-brand" href="#">watch-n-read</a>
+	  </div>
+	  <ul class="nav navbar-nav">
+	    <li><class="active" a href="/index1">Home</a></li>
+	    <li><a href="/login">Login</a></li> 
+	    <li><a href="/create">Create An Account</a></li> 
+	  </ul>
+	</div>
       </nav>
 
       <div class="container">
@@ -111,6 +116,8 @@
 	    <li data-target="#myCarousel" data-slide-to="1"></li>
 	    <li data-target="#myCarousel" data-slide-to="2"></li>
 	    <li data-target="#myCarousel" data-slide-to="3"></li>
+	    <li data-target="#myCarousel" data-slide-to="4"></li>
+
 	  </ol>
 
 	  <!-- Wrapper for slides -->
@@ -120,11 +127,15 @@
 	    </div>
 
 	    <div class="item">
-	      <img src="http://www.hampton.lib.nh.us/sites/default/files/Uploads/movie-night.png" alt="Flower" width="460" height="345">
+	      <img src="http://thefairytalesite.net/wp-content/uploads/2012/11/Harry-Potter-and-The-Prisoner-of-Azkaban-harry-james-potter-9649892-1024-7681.jpg" alt="Flower" width="460" height="345">
+	    </div>
+
+	    <div class="item">
+	      <img src="https://pmcdeadline2.files.wordpress.com/2015/04/paper-towns.jpg?w=970" alt="Flower" width="460" height="345">
 	    </div>
 	    
 	    <div class="item">
-	      <img src="http://images.redbox.com/Images/EPC/Kiosk/7960.jpg" alt="Flower" width="460" height="345">
+	      <img src="http://www.canongate.tv/wp/wp-content/uploads/2013/01/wordbooknight.jpg" width="460" height="345">
 	    </div>
 
 	    <div class="item">
