@@ -78,5 +78,9 @@ https://www.goodreads.com/book/isbn?isbn=%s&key=SBrrYwqTUdPBlX6AF0Zbg
     url=url%(str(isbn))
     request_url = urllib2.urlopen(url) #ERROR HERE
     result = request_url.read()
+    print result
     widget = getWidgetHelper(result)
     return widget
+
+#var myIFrame = document.getElementById("myIframe");
+#var content = myIFrame.contentWindow.document.body.innerHTML;
