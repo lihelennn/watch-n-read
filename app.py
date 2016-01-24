@@ -94,15 +94,16 @@ def results(query=""):
   
   for movie in movieData:
       reviews = movies.getMovieReview(movie["id"])
-      result=0
-      for review in reviews:
-          result+=utils.reviewEvaluation(review["content"])
-      result/=len(reviews)
-      movie["result"]=result
+      if len(reviews) > 0:
+          result=0
+          for review in reviews:
+              result+=utils.reviewEvaluation(review["content"])
+              result/=len(reviews)
+          movie["result"]=result
 
 
 ###regex stuff
-      utils.reviewEvaluation(text)
+#      utils.reviewEvaluation(text)
 
       return render_template("results.html", bookData = bookData, movieData=movieData)
   else:

@@ -25,6 +25,7 @@
     {% for a in book["authors"] %}
     {{a}}<br>
     {% endfor %}
+    <br>
     {{book["desc"]}}<br><br>
     {% endfor %}
   
@@ -33,8 +34,8 @@
     <h1>Movies</h1>
     {% for movie in movieData %}
     <h2>{{movie["title"]}}</h2><br><br>
-    Our Evaluation: {{movie["result"]}}<br>
     {{movie["overview"]}}<br><br>
+    Our Evaluation: {{movie["result"]}}<br>
     {% endfor %}
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

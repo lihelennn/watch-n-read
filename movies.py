@@ -58,5 +58,10 @@ def getMovieReview(id):
         reviewlist.append(data)
     return reviewlist
 
-#print searchMovie('harry potter')
 #print getMovieReview(49026)
+
+#movieData=searchMovie('harry potter')
+#for movie in movieData:
+#    print movie["id"]
+#    print movie["title"]
+#    print getMovieReview(movie["id"])
