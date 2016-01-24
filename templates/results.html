@@ -1,97 +1,101 @@
-<html>
-  <head>
-  </head>
-  <body>
+{% extends "index1.html" %}
 
-<form class="form-horizontal" role="form" method="POST">
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="search">Search:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="search" id="search" placeholder="Enter a movie or book name">
+{% block beginning2 %}
+<body>
+
+  <div class="jumbotron home home-fullscreen" id="home">
+    <div class="mask"></div>
+    <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
+    <!-- Offsite navigation -->
+    <nav class="menu">
+      <a href="#" class="close"><i class="fa fa-close"></i></a>
+      <h3>Menu</h3>
+      <ul class="nav">
+	<li><a href="/index1">Home</a></li>
+	<li><a href="/login">Login</a></li>
+      </ul>
+      <ul class="social-icons">
+	<li><a href=""><i class="fa fa-facebook"></i></a></li>
+      </ul>
+    </nav>
+    
+    <div class="container">
+      <h2>Comparing...</h2>
+      <table class="table">
+	<thead>
+	  <tr>
+            <th>Book</th>
+            <th>Movie</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td>
+	      {% for book in bookData %}
+	      {% if loop.index > 1  %}
+	      {% else %}
+	      {{book["title"]}}<br>
+              {{book["desc"]}}
+	      {% endif %}
+	      {% endfor %}
+	    </td>
+	    <td>
+	      {% for movie in movieData %}
+	      {% if loop.index > 1  %}
+	      {% else %}
+	      {{movie["title"]}}<br>
+              {{movie["overview"]}}
+	      {% endif %}
+	      {% endfor %}       
+	    </td>
+	</tbody>
+      </table>
+
+      {% for movie in movieData %}
+      {% if loop.index > 1  %}
+      {% else %}
+      Our Evaluation: The {{movie["result"]}} is better!
+      {% endif %}
+      {% endfor %} 
+      
     </div>
   </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <center><button type="submit" class="btn btn-default btn-sm">Submit</button></center>
-    </div>
-  </div>
-      </form>
-
-
-
-<div class="container">
-  <h2>Comparing...</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Book</th>
-        <th>Movie</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-	<td>
-	{% for book in bookData %}
-	{% if loop.index > 1  %}
-	{% else %}
-	{{book["title"]}}<br>
-        {{book["desc"]}}
-	{% endif %}
-	{% endfor %}
-	</td>
-	<td>
-	{% for movie in movieData %}
-	{% if loop.index > 1  %}
-	{% else %}
-	{{movie["title"]}}<br>
-        {{movie["overview"]}}
-	{% endif %}
-	{% endfor %}       
-      </td>
-    </tbody>
-  </table>
-
-	{% for movie in movieData %}
-	{% if loop.index > 1  %}
-	{% else %}
-	Our Evaluation: The {{movie["result"]}} is better!
-	{% endif %}
-	{% endfor %} 
-  
 </div>
 
 
+{{error}}
+
+<!-- Login form end -->
+
+{% endblock beginning2 %}
 
 
 
 
-    <h1>Books</h1>
-    {% for book in bookData %}
-    {% if loop.index > 1  %}
-    {% else %}
-    <h2>{{book["title"]}}</h2><br><br>
-    by:<br>
-    {% for a in book["authors"] %}
-    {{a}}<br>
-    {% endfor %}
-    <br>
-    {{book["desc"]}}<br><br>
-    {% endif %}
-    {% endfor %}
-  
-    <br>
-    <br>
-    <h1>Movies</h1>
-    {% for movie in movieData %}
-    {% if loop.index > 1  %}
-    {% else %}
-    <h2>{{movie["title"]}}</h2><br><br>
-    {{movie["overview"]}}<br><br>
-    Our Evaluation: {{movie["result"]}}<br>
-    {% endif %}
-    {% endfor %}
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src = "static/results.js"></script>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
