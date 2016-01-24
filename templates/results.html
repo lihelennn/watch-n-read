@@ -20,6 +20,8 @@
 
     <h1>Books</h1>
     {% for book in bookData %}
+    {% if loop.index > 1  %}
+    {% else %}
     <h2>{{book["title"]}}</h2><br><br>
     by:<br>
     {% for a in book["authors"] %}
@@ -27,15 +29,19 @@
     {% endfor %}
     <br>
     {{book["desc"]}}<br><br>
+    {% endif %}
     {% endfor %}
   
     <br>
     <br>
     <h1>Movies</h1>
     {% for movie in movieData %}
+    {% if loop.index > 1  %}
+    {% else %}
     <h2>{{movie["title"]}}</h2><br><br>
     {{movie["overview"]}}<br><br>
     Our Evaluation: {{movie["result"]}}<br>
+    {% endif %}
     {% endfor %}
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
