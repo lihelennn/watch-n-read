@@ -3,12 +3,6 @@ import utils, urllib2, json, random, re, books, movies, accounts
 
 app = Flask(__name__)
 
-#testing html template starts
-@app.route("/index1")
-def index1():
-    return render_template("index1.html")
-
-###
 
 @app.route("/board", methods = ['GET','POST'])
 def board():
@@ -74,6 +68,7 @@ def login():
         return render_template("login.html", error = error)
         
 @app.route("/", methods = ['GET','POST'])
+@app.route("/index1", methods=['GET','POST'])
 def index():
     if request.method == 'GET':
         return render_template("index1.html")
