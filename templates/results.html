@@ -18,6 +18,54 @@
   </div>
       </form>
 
+
+
+<div class="container">
+  <h2>Comparing...</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Movie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td>
+	{% for book in bookData %}
+	{% if loop.index > 1  %}
+	{% else %}
+	{{book["title"]}}<br>
+        {{book["desc"]}}
+	{% endif %}
+	{% endfor %}
+	</td>
+	<td>
+	{% for movie in movieData %}
+	{% if loop.index > 1  %}
+	{% else %}
+	{{movie["title"]}}<br>
+        {{movie["overview"]}}
+	{% endif %}
+	{% endfor %}       
+      </td>
+    </tbody>
+  </table>
+
+	{% for movie in movieData %}
+	{% if loop.index > 1  %}
+	{% else %}
+	Our Evaluation: The {{movie["result"]}} is better!
+	{% endif %}
+	{% endfor %} 
+  
+</div>
+
+
+
+
+
+
     <h1>Books</h1>
     {% for book in bookData %}
     {% if loop.index > 1  %}
