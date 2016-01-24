@@ -33,8 +33,9 @@ Stuyvesant High School
   
 ## APIs
 
-## Notes for testing
+## Notes For Testing
   - No book reviews and only a limited number of movie reviews could could be retrived. More recent movies such as The Fault in Our Stars, The Hunger Games, and Star Wars had valid evaluations. 
+  
 ## The People
   - Helen Li (UX / Team Leader)
   - Tony Li (Backend)
