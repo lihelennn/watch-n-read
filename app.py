@@ -99,7 +99,12 @@ def results(query=""):
           for review in reviews:
               result+=utils.reviewEvaluation(review["content"])
               result/=len(reviews)
-          movie["result"]=result
+          if result < 0.5:
+              movie["result"]="book"
+          else:
+              movie["result"]="movie"
+     
+          #movie["result"]=result
 
 
 ###regex stuff
