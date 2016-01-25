@@ -6,31 +6,38 @@ app = Flask(__name__)
 
 @app.route("/board", methods = ['GET','POST'])
 def board():
-    if request.method=="GET":
-        posts = accounts.getAllPosts()    
-        return render_template("board.html",posts=posts)
+    if 'uname' in session:
+        n=session['uname']
+        if request.method=="GET":
+            posts = accounts.getAllPosts()    
+            return render_template("board.html",posts=posts,n=n)
+        else:
+            uname=session['uname']
+            title=request.form['title']
+            line=request.form['text']
+            accounts.newPost(uname, title, line)
+            return redirect('/thread/%s' %title)
     else:
-        uname=session['uname']
-        title=request.form['Title']
-        line=request.form['text']
-        accounts.newPost(uname, title, line)
-        return redirect('/thread/%s' %title)
+        return redirect('/login')
 
 
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
-def thread(id=''):                    
-    if request.method=="GET":
-        post = accounts.getPostByPostID(id)
-        comments = accounts.getCommentsByPostID(id)
+def thread(id=''):    
+    if 'uname' in session:
+        n=session['uname']
+        if request.method=="GET":
+            post = accounts.getPostByPostID(id)
+            comments = accounts.getCommentsByPostID(id)
 
-        return render_template("thread.html", comments=comments, post=post)
-    else:
-        #needs a form
-        content = request.form["text"]
-        uname=session['uname']
-        account.newComment(uname, content, id)
-        return redirect(url_for("thread/%s" %(id)))
+            return render_template("thread.html", comments=comments, post=post, n=n)
+        else:
+            #needs a form
+            content = request.form["text"]
+            uname=session['uname']
+            account.newComment(uname, content, id)
+            return redirect(url_for("thread/%s" %(id)))
+    return redirect('/login')
                         
 @app.route("/create", methods = ['GET', 'POST'])
 def create():
@@ -64,19 +71,24 @@ def login():
 @app.route("/", methods = ['GET','POST'])
 @app.route("/index1", methods=['GET','POST'])
 def index():
+    if 'uname' in session:
+        n=session['uname']
     if request.method == 'GET':
-        return render_template("index1.html")
+        return render_template("index1.html",n=n)
 
     else:
         query = request.form["search"].encode('utf-8')
-        return redirect(url_for("results",query=query))
+        return redirect(url_for("results",query=query,n=n))
        
     return render_template("index1.html")
         
 @app.route("/results", methods = ['GET','POST'])
 @app.route("/results/<query>", methods = ['GET','POST'])
 def results(query=""):
-  if request.method == 'GET':
+    if 'uname' in session:
+        n=session['uname']
+    if request.method == 'GET':
+
 
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
@@ -102,9 +114,32 @@ def results(query=""):
 
       return render_template("results.html", bookData = bookData, movieData=movieData)
   else:
+
+        bookData=books.searchBook(query)
+        movieData=movies.searchMovie(query)
+  
+    for movie in movieData:
+        reviews = movies.getMovieReview(movie["id"])
+        if len(reviews) > 0:
+            result=0
+            for review in reviews:
+                result+=utils.reviewEvaluation(review["content"])
+                result/=len(reviews)
+                if result < 0.5:
+                    movie["result"]="book"
+                else:
+                    movie["result"]="movie"
+                    return render_template("results.html", bookData = bookData, movieData=movieData,n=n)
+    else:
+
       query = request.form["search"].encode('utf-8') 
       print query
       return redirect(url_for("results",query=query))
+
+@app.route('/logout')
+def logout():
+    session.clear();
+    return redirect('/login')
 
 if __name__ == "__main__":
    app.debug = True
