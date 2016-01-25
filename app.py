@@ -17,14 +17,13 @@ def board():
             title=request.form['title']
             line=request.form['text']
             accounts.newPost(uname, title, line)
-<<<<<<< HEAD
+
             updated=accounts.getAllPosts()
             lastPostID=str(updated[len(updated)-1]['postID'])
-            return redirect('/thread/%s' %lastPostID)
-=======
-            posts = accounts.getAllPosts()    
+          #  return redirect('/thread/%s' %lastPostID)
+           # posts = accounts.getAllPosts()    
             return render_template("board.html", posts=posts, n=n)
->>>>>>> bc2ac3de1f5c55a5781901e214698f4f875c576c
+
     else:
         return redirect('/login')
 
