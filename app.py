@@ -8,12 +8,16 @@ app = Flask(__name__)
 def index():
     if 'uname' in session:
         n=session['uname']
+        if request.method == 'GET':
+            return render_template("index1.html",n=n)
+        else:
+            query = request.form["search"].encode('utf-8')
+            return redirect(url_for("results",query=query))
     if request.method == 'GET':
-        return render_template("index1.html",n=n)
-
+        return render_template("index1.html")
     else:
         query = request.form["search"].encode('utf-8')
-        return redirect(url_for("results",query=query,n=n))
+        return redirect(url_for("results",query=query))
        
     return render_template("index1.html")
 
