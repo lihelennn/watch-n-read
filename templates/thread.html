@@ -1,30 +1,142 @@
-{{post["title"]}}
-<br>
-{{post["userneme"]}}
-<br>
-{{post["content"]}}
-<br>
+{% block beginning %}
 
-{% for comment in comments %}
-    OP:{{comment["username"]}}
-    <br>
-    {{comment["comment"]}}
+<!DOCTYPE html>
+<!--
+    * A Design by GraphBerry
+    * Author: GraphBerry
+    * Author URL: http://graphberry.com
+    * License: http://graphberry.com/pages/license
+  -->
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch-n-read</title>
 
-{% endfor %}
+    <!-- Load fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 
-<form class="pure-form" method="POST">
-  <center><h2>New Post</h2></center>
-  <fieldset>
-    <center>
-      <textarea rows="10" cols="100" class="form-control" placeholder = "Write here..." name = "text"></textarea>
-      <br><br>
-      <div class="form-group">
-        <div class="col-xs-offset-4 col-xs-4">
-          <center><button type="submit" class="btn-danger btn-sm btn-sm">Submit Comment</button></center>
-        </div>
+    <!-- Load css styles -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+
+    <style>
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img {
+      width: 600px;
+      height: 400px;
+      margin: auto;
+      }
+      
+    </style>
+
+  </head>
+
+  {% endblock beginning %}
+
+  {% block beginning2 %}
+  <body>
+    
+    <div class="jumbotron" id="home">
+
+      <div class="mask"></div>
+      
+      <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
+      
+      <!-- Offsite navigation -->
+      
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <a class="navbar-brand" href="#">watch-n-read</a>
+	  </div>
+	  <ul class="nav navbar-nav">
+	    <li><a href="/index1">Home</a></li>
+	    {% if not n %}
+	    <li><a href="/login">Login</a></li> 
+	    <li><a href="/create">Create An Account</a></li> 
+	    {% else %}
+	    <li><a href="/logout">Logout</a></li> 
+	    {% endif %}
+	    <li><a class="active" href="/board">Forum</a></li>
+	  </ul>
+	</div>
+      </nav>
+
+      <div class="container">
+	<div class="header-info">
+	  <br><br><br><br><br><br><br><br><br>
+	  {{post["title"]}}
+	  <br>
+	  {{post["userneme"]}}
+	  <br>
+	  {{post["content"]}}
+	  <br>
+
+	  {% for comment in comments %}
+	  OP:{{comment["username"]}}
+	  <br>
+	  {{comment["comment"]}}
+
+	  {% endfor %}
+
+	  <!-- Search form start-->
+	  <form class="pure-form" method="POST">
+	    <center><h2>New Post</h2></center>
+	    <fieldset>
+              <center><input type="text" class="form-control" placeholder="Title" name="title"><br><br>
+		<textarea rows="10" cols="100" class="form-control" placeholder = "Write here..." name = "text"></textarea>
+		<br><br>
+		<div class="form-group">
+		  <div class="col-xs-offset-4 col-xs-4">
+		    <center><button type="submit" class="btn-danger btn-sm btn-sm">Post</button></center>
+		  </div>
+		</div>
+	      </center>
+	    </fieldset>
+	  </form>
+	</div>
       </div>
-    </center>
-  </fieldset>
-</form>
+    </div>
+</div>
 
+<!-- Search form end -->
 
+{% endblock beginning2 %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block footer %}
+
+<!-- Footer start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+	<p>&copy; 2015 Template by <a href="http://graphberry.com" target="_blank">GraphBerry</a></p>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+<!-- Footer end  -->
+
+<!-- Load jQuery -->
+<script type="text/javascript" src="../static/jquery-1.11.2.min.js"></script>
+
+<!-- Load Booststrap -->
+<script type="text/javascript" src="../static/bootstrap.js"></script>
+
+<script type="text/javascript" src="../static/smooth-scroll.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<!-- Load custom js for theme -->
+<script type="text/javascript" src="../static/app.js"></script>
+</body>
+</html>
+
+{% endblock footer %}
