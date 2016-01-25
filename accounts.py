@@ -246,5 +246,5 @@ def getCommentsByPostID(postID):
 #print getAllPosts()
 #newPost("David", "mytitle", "mycontent")
 #newComment("David", "comment1", getPostIDByUsernameTitle("David", "mytitle"))
-print getPostByPostID(getPostIDByUsernameTitle("David", "mytitle"))
-print getCommentsByPostID(getPostIDByUsernameTitle("David", "mytitle"))
+#print getPostByPostID(getPostIDByUsernameTitle("David", "mytitle"))
+#print getCommentsByPostID(getPostIDByUsernameTitle("David", "mytitle"))
