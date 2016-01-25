@@ -16,8 +16,7 @@ def board():
             title=request.form['title']
             line=request.form['text']
             accounts.newPost(uname, title, line)
-            posts = accounts.getAllPosts()    
-            return render_template("board.html", posts=posts, n=n)
+            return redirect('/thread/%s' %title)
     else:
         return redirect('/login')
 
