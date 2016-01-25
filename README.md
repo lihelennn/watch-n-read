@@ -11,12 +11,6 @@ Stuyvesant High School
   - Compare books and movies based on reviews
 	- Use regex to look for positive words:negative words ratio
     - Get data for how many stars the book or movie has
-	- Give nearby movie theaters if the movie is better
-		- Geolocation
-		- Netflix
-	- Give amazon/book store link if the book is better
-	  - Geolocation
-		- Google
   - Create an online forum for people to discuss books/movies.
 
 ## Instructions
@@ -32,9 +26,12 @@ Stuyvesant High School
   - /results : return results of search
   
 ## APIs
+  - Google Books
+  - GoodReads
+  - themoviedb
 
 ## Notes For Testing
-  - No book reviews and only a limited number of movie reviews could could be retrived. More recent movies such as The Fault in Our Stars, The Hunger Games, and Star Wars had valid evaluations. 
+  - No book reviews and only a limited number of movie reviews could could be retrived. More recent movies such as The Fault in Our Stars, The Hunger Games, and Star Wars have valid evaluations. 
   
 ## The People
   - Helen Li (UX / Team Leader)
