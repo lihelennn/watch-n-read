@@ -19,9 +19,9 @@ def board():
 
             updated=accounts.getAllPosts()
             lastPostID=str(updated[len(updated)-1]['postID'])
-          #  return redirect('/thread/%s' %lastPostID)
+            return redirect('/thread/%s' %lastPostID)
            # posts = accounts.getAllPosts()    
-            return render_template("board.html", posts=posts, n=n)
+           # return render_template("board.html", posts=posts, n=n)
 
     else:
         return redirect('/login')
