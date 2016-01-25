@@ -96,7 +96,7 @@ def getPostByPostID(postID):
     db=connection.wnr
     a=ObjectId(postID)
     
-    cursor=db.posts.find_one({'_id':ObjectId(postID)})
+    cursor=db.posts.find({'_id':ObjectId(postID)})
     for doc in cursor:
         return doc
     
@@ -226,8 +226,8 @@ def getCommentsByPostID(postID):
     db= connection.wnr
    # db.wnr.remove({})
     cursor=db.comments.find({"postID":postID})
+    
     comments=[]
-
     for com in cursor:
         comments.append(com)
     return comments
@@ -244,3 +244,7 @@ def getCommentsByPostID(postID):
 #print getPostByPostID(getPostIDByUsernameTitle("Tony", "hai"))
 #newComment("David", "my first comment", getPostIDByUsernameTitle("Tony", "hai"))
 #print getAllPosts()
+#newPost("David", "mytitle", "mycontent")
+#newComment("David", "comment1", getPostIDByUsernameTitle("David", "mytitle"))
+print getPostByPostID(getPostIDByUsernameTitle("David", "mytitle"))
+print getCommentsByPostID(getPostIDByUsernameTitle("David", "mytitle"))
