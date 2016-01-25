@@ -54,9 +54,13 @@
 	  </div>
 	  <ul class="nav navbar-nav">
 	    <li><a href="/index1">Home</a></li>
+	    {% if not n %}
 	    <li><a href="/login">Login</a></li> 
 	    <li><a href="/create">Create An Account</a></li> 
-	    <li><class="active" a href="/board">Forum</a></li>
+	    {% else %}
+	    <li><a href="/logout">Logout</a></li> 
+	    {% endif %}
+	    <li><a class="active" href="/board">Forum</a></li>
 </ul>
 </div>
 </nav>
