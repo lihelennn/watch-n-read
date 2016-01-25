@@ -45,18 +45,6 @@
       
       <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
       
-      <!-- Offsite navigation -->
-      <!--<nav class="menu">
-	  <a href="/index1" class="active"><i class="fa fa-close"></i></a>
-	  <h3>Menu</h3>
-	  <ul class="nav">
-	    <li><a data-scroll href="/index1">Home</a></li>
-	    <li><a data-scroll href="/login">Login</a></li>
-	    <li><a data-scroll href="/create">Create An Account</a></li>
-	  </ul>
-	  
-	  
-      </nav>-->
 
       <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
@@ -65,8 +53,12 @@
 	  </div>
 	  <ul class="nav navbar-nav">
 	    <li><a class="active" href="/index1">Home</a></li>
+	    {% if not n %}
 	    <li><a href="/login">Login</a></li> 
 	    <li><a href="/create">Create An Account</a></li> 
+	    {% else %}
+	    <li><a href="/logout">Logout</a></li> 
+	    {% endif %}
 	  </ul>
 	</div>
       </nav>
