@@ -90,51 +90,37 @@ def results(query=""):
     if request.method == 'GET':
 
 
-      bookData=books.searchBook(query)
-      movieData=movies.searchMovie(query)
-      
-      if not movieData == -1:
-          for movie in movieData:
-              reviews = movies.getMovieReview(movie["id"])
-              if len(reviews) > 0:
-                  result=0
-                  for review in reviews:
-                      result+=utils.reviewEvaluation(review["content"])
-                      result/=len(reviews)
-                      if result < 0.5:
-                          movie["result"]="book"
-                      else:
-                          movie["result"]="movie"
-     
-          #movie["result"]=result
-
-
-###regex stuff
-#      utils.reviewEvaluation(text)
-
-      return render_template("results.html", bookData = bookData, movieData=movieData)
-  else:
-
         bookData=books.searchBook(query)
         movieData=movies.searchMovie(query)
+      
+        if not movieData == -1:
+            for movie in movieData:
+                reviews = movies.getMovieReview(movie["id"])
+                if len(reviews) > 0:
+                    result=0
+                    for review in reviews:
+                        result+=utils.reviewEvaluation(review["content"])
+                        result/=len(reviews)
+                        if result < 0.5:
+                            movie["result"]="book"
+                        else:
+                            movie["result"]="movie"
+     
+                            #movie["result"]=result
+
+
+                            ###regex stuff
+                            #      utils.reviewEvaluation(text)
+
+        return render_template("results.html", bookData = bookData, movieData=movieData)
+ 
   
-    for movie in movieData:
-        reviews = movies.getMovieReview(movie["id"])
-        if len(reviews) > 0:
-            result=0
-            for review in reviews:
-                result+=utils.reviewEvaluation(review["content"])
-                result/=len(reviews)
-                if result < 0.5:
-                    movie["result"]="book"
-                else:
-                    movie["result"]="movie"
-                    return render_template("results.html", bookData = bookData, movieData=movieData,n=n)
+
     else:
 
-      query = request.form["search"].encode('utf-8') 
-      print query
-      return redirect(url_for("results",query=query))
+        query = request.form["search"].encode('utf-8') 
+        print query
+        return redirect(url_for("results",query=query))
 
 @app.route('/logout')
 def logout():
