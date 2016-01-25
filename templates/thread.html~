@@ -18,9 +18,9 @@
     <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 
     <!-- Load css styles -->
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="static/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
 
     <style>
       .carousel-inner > .item > img,
@@ -39,11 +39,8 @@
   {% block beginning2 %}
   <body>
     
-    <div class="jumbotron" id="home">
-
+    <div class="jumbotron" >
       <div class="mask"></div>
-      
-      <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
       
       <!-- Offsite navigation -->
       
@@ -61,36 +58,41 @@
 	    <li><a href="/logout">Logout</a></li> 
 	    {% endif %}
 	    <li><a class="active" href="/board">Forum</a></li>
-</ul>
-</div>
-</nav>
-
-<div class="container">
-  <div class="header-info">
-    <br><br><br><br><br><br><br><br><br>
-    {% for post in posts %}
-    <h2><a href="thread/{{post["postID"]}}">{{post["title"]}}</a></h2>
-    By: {{post["username"]}}
-    {% endfor %}
-
-    <!-- Search form start-->
-    <form class="pure-form" method="POST">
-      <center><h2>New Post</h2></center>
-      <fieldset>
-        <center><input type="text" class="form-control" placeholder="Title" name="title"><br><br>
-	  <textarea rows="6" cols="100" class="form-control" placeholder = "Write here..." name = "text"></textarea>
+	  </ul>
+	</div>
+      </nav>
+      <div class="container">
+	<div class="header-info">
+	  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	  <h2>{{post["title"]}}</h2>
+	  <h2>By: {{post["username"]}}</h2>
+	  {{post["content"]}}
 	  <br><br>
-	  <div class="form-group">
-	    <div class="col-xs-offset-4 col-xs-4">
-	      <center><button type="submit" class="btn-danger btn-sm btn-sm">Post</button></center>
-	    </div>
-	  </div>
-	</center>
-      </fieldset>
-    </form>
-  </div>
-</div>
-</div>
+
+	  {% for comment in comments %}
+	  <h3>Comment By: {{comment["username"]}}</h3>
+	  <p>Comment: {{comment["comment"]}}</p>
+	  {% endfor %}
+
+	  <!-- Search form start-->
+	  <form class="pure-form" method="POST">
+	    <br><br><br>
+	    <center><h2>New Post</h2></center>
+	    <fieldset>
+              <center><input type="text" class="form-control" placeholder="Title" name="title"><br><br>
+		<textarea rows="10" cols="100" class="form-control" placeholder = "Write here..." name = "text"></textarea>
+		<br><br>
+		<div class="form-group">
+		  <div class="col-xs-offset-4 col-xs-4">
+		    <center><button type="submit" class="btn-danger btn-sm btn-sm">Post</button></center>
+		  </div>
+		</div>
+	      </center>
+	    </fieldset>
+	  </form>
+	</div>
+      </div>
+   </div>
 </div>
 
 <!-- Search form end -->
@@ -116,17 +118,17 @@
 <!-- Footer end  -->
 
 <!-- Load jQuery -->
-<script type="text/javascript" src="static/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../static/jquery-1.11.2.min.js"></script>
 
 <!-- Load Booststrap -->
-<script type="text/javascript" src="static/bootstrap.js"></script>
+<script type="text/javascript" src="../static/bootstrap.js"></script>
 
-<script type="text/javascript" src="static/smooth-scroll.js"></script>
+<script type="text/javascript" src="../static/smooth-scroll.js"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <!-- Load custom js for theme -->
-<script type="text/javascript" src="static/app.js"></script>
+<script type="text/javascript" src="../static/app.js"></script>
 </body>
 </html>
 
