@@ -22,6 +22,8 @@ def searchBook(query):
               authors (list containing list)
               desc (string)
               ISBN (int)
+
+         -1 if it doesn't exist
     """
     name=utils.spaceConverter(query)
     url="""
@@ -32,6 +34,9 @@ def searchBook(query):
     request_url = urllib2.urlopen(url)
     result = request_url.read()
     r = json.loads(result)
+    if str(r["totalItems"])=="0":
+        return -1
+  
     bookList=[]
     ctr=0
     for book in r['items']:

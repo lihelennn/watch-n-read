@@ -80,18 +80,19 @@ def results(query=""):
 
       bookData=books.searchBook(query)
       movieData=movies.searchMovie(query)
-  
-  for movie in movieData:
-      reviews = movies.getMovieReview(movie["id"])
-      if len(reviews) > 0:
-          result=0
-          for review in reviews:
-              result+=utils.reviewEvaluation(review["content"])
-              result/=len(reviews)
-          if result < 0.5:
-              movie["result"]="book"
-          else:
-              movie["result"]="movie"
+      
+      if not movieData == -1:
+          for movie in movieData:
+              reviews = movies.getMovieReview(movie["id"])
+              if len(reviews) > 0:
+                  result=0
+                  for review in reviews:
+                      result+=utils.reviewEvaluation(review["content"])
+                      result/=len(reviews)
+                      if result < 0.5:
+                          movie["result"]="book"
+                      else:
+                          movie["result"]="movie"
      
           #movie["result"]=result
 

@@ -21,6 +21,10 @@ def searchMovie(query):
     request_url = urllib2.urlopen(url)
     result = request_url.read()
     r = json.loads(result)
+
+    if (r['total_results']==0):
+        return -1
+    
     movieList=[]
   
     for movie in r['results']:

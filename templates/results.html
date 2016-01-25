@@ -57,6 +57,7 @@
       <div class="container">
 	<div class="header-info">
 	  <br><br>
+	  {% if not bookData == -1%}
 	  <h2>Comparing...</h2>
 	  {% for book in bookData %}
 	  {% if loop.index > 1  %}
@@ -72,16 +73,21 @@
 	  <h3>Movie: <i>{{movie["title"]}}</i></h3><br>
 	  {{movie["overview"]}}
 	  {% endif %}
-	  {% endfor %}       
+	  {% endfor %} 
+	  {% else %}
+	  <h3>Book does not exist</h3><br>
+	  {% endif %}
 	  <br><br>
-
+	  {% if not movieData == -1%}
 	  {% for movie in movieData %}
 	  {% if loop.index > 1  %}
 	  {% else %}
 	  <h2>***Our Evaluation: The {{movie["result"]}} is better!***</h2>
 	  {% endif %}
 	  {% endfor %} 
-
+	  {% else %}
+	  <h3>Movie does not exist</h3>
+	  {% endif %}
 	  <h2>Forum</h2>
 	  <p>Click here to go to the forum:</p>            
 	  <a href="/board" role="button" class="btn btn-info btn-block">Forum</a>
