@@ -13,7 +13,7 @@ def board():
             return render_template("board.html",posts=posts,n=n)
         else:
             uname=session['uname']
-            title=request.form['Title']
+            title=request.form['title']
             line=request.form['text']
             accounts.newPost(uname, title, line)
             return redirect('/thread/%s' %title)
