@@ -6,8 +6,16 @@ app = Flask(__name__)
 
 @app.route("/board", methods = ['GET','POST'])
 def board():
-    posts = accounts.getAllPosts()    
-    return render_template("board.html",posts=posts)
+    if request.method=="GET":
+        posts = accounts.getAllPosts()    
+        return render_template("board.html",posts=posts)
+    else:
+        uname=session['uname']
+        title=request.form['Title']
+        line=request.form['text']
+        accounts.newPost(uname, title, line)
+        return redirect('/thread/%s' %title)
+
 
 @app.route("/thread", methods = ['GET','POST'])
 @app.route("/thread/<id>", methods = ['GET','POST'])
@@ -19,24 +27,10 @@ def thread(id=''):
         return render_template("thread.html", comments=comments, post=post)
     else:
         #needs a form
-        content = request.form["content"]
+        content = request.form["text"]
         uname=session['uname']
         account.newComment(uname, content, id)
         return redirect(url_for("thread/%s" %(id)))
-                        
-    @app.route("/new", methods = ['GET','POST'])
-    def new():
-        if request.method=="GET":
-            return render_template("new.html")
-        else:
-            uname=session['uname']
-            title=request.form['title']
-            line=request.form['entry']
-            accounts.newPost(uname, title, line)
-        #for multiple buttons
-                        #button=request.form['button']
-                        #if button=="Submit":
-            return redirect('/thread/%s' %title)
                         
 @app.route("/create", methods = ['GET', 'POST'])
 def create():
