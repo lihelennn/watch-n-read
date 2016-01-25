@@ -39,11 +39,8 @@
   {% block beginning2 %}
   <body>
     
-    <div class="jumbotron" id="home">
-
+    <div class="jumbotron" >
       <div class="mask"></div>
-      
-      <a href="" class="menu-toggle" id="nav-expander"><i class="fa fa-bars"></i></a>
       
       <!-- Offsite navigation -->
       
@@ -64,26 +61,22 @@
 	  </ul>
 	</div>
       </nav>
-
       <div class="container">
 	<div class="header-info">
-	  <br><br><br><br><br><br><br><br><br>
-	  {{post["title"]}}
-	  <br>
-	  {{post["username"]}}
-	  <br>
+	  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	  <h2>{{post["title"]}}</h2>
+	  <h2>By: {{post["username"]}}</h2>
 	  {{post["content"]}}
-	  <br>
+	  <br><br>
 
 	  {% for comment in comments %}
-	  OP:{{comment["username"]}}
-	  <br>
-	  {{comment["comment"]}}
-
+	  <h3>Comment By: {{comment["username"]}}</h3>
+	  <p>Comment: {{comment["comment"]}}</p>
 	  {% endfor %}
 
 	  <!-- Search form start-->
 	  <form class="pure-form" method="POST">
+	    <br><br><br>
 	    <center><h2>New Post</h2></center>
 	    <fieldset>
               <center><input type="text" class="form-control" placeholder="Title" name="title"><br><br>
@@ -99,7 +92,7 @@
 	  </form>
 	</div>
       </div>
-    </div>
+   </div>
 </div>
 
 <!-- Search form end -->

@@ -70,8 +70,7 @@
     <br><br><br><br><br><br><br><br><br>
     {% for post in posts %}
     <h2><a href="thread/{{post["postID"]}}">{{post["title"]}}</a></h2>
-    <br>
-    OP:{{post["username"]}}
+    By: {{post["username"]}}
     {% endfor %}
 
     <!-- Search form start-->

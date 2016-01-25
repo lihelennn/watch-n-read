@@ -2,6 +2,20 @@ from flask import Flask, render_template,request,session,redirect,url_for
 import utils, urllib2, json, random, re, books, movies, accounts
 
 app = Flask(__name__)
+        
+@app.route("/", methods = ['GET','POST'])
+@app.route("/index1", methods=['GET','POST'])
+def index():
+    if 'uname' in session:
+        n=session['uname']
+    if request.method == 'GET':
+        return render_template("index1.html",n=n)
+
+    else:
+        query = request.form["search"].encode('utf-8')
+        return redirect(url_for("results",query=query,n=n))
+       
+    return render_template("index1.html")
 
 @app.route("/board", methods = ['GET','POST'])
 def board():
@@ -40,7 +54,6 @@ def thread(id=''):
             print post
             return render_template("thread.html", comments=comments, post=post, n=n)
         else:
-            #needs a form
             print str(id)+" helloooooooooooo"
             content = request.form["text"]
             uname=session['uname']
@@ -62,7 +75,6 @@ def create():
             msg="Failure!"
             return render_template('create.html', msg=msg)
 
-
 @app.route("/login", methods = ['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -76,20 +88,6 @@ def login():
             return redirect(url_for("index"))
         error = "Invaild username password combination"
         return render_template("login.html", error = error)
-        
-@app.route("/", methods = ['GET','POST'])
-@app.route("/index1", methods=['GET','POST'])
-def index():
-    if 'uname' in session:
-        n=session['uname']
-    if request.method == 'GET':
-        return render_template("index1.html",n=n)
-
-    else:
-        query = request.form["search"].encode('utf-8')
-        return redirect(url_for("results",query=query,n=n))
-       
-    return render_template("index1.html")
         
 @app.route("/results", methods = ['GET','POST'])
 @app.route("/results/<query>", methods = ['GET','POST'])
@@ -110,21 +108,14 @@ def results(query=""):
                     for review in reviews:
                         result+=utils.reviewEvaluation(review["content"])
                         result/=len(reviews)
-                        if result < 0.5:
-                            movie["result"]="book"
-                        else:
-                            movie["result"]="movie"
-     
-                            #movie["result"]=result
-
-
-                            ###regex stuff
-                            #      utils.reviewEvaluation(text)
-
+                    if result < 0.5:
+                        movie["result"]="book"
+                    else:
+                        movie["result"]="movie"
+                else:
+                    #really can't evaluate? then the book
+                    movie["result"]="book"
         return render_template("results.html", bookData = bookData, movieData=movieData)
- 
-  
-
     else:
 
         query = request.form["search"].encode('utf-8') 
