@@ -22,7 +22,7 @@ Stuyvesant High School
 ## Short Video
   - https://youtu.be/iEQ2AC-OTf4
 
-## Website on a server
+## Website on a Server
   - http://162.243.19.69/
   
 ## Links
