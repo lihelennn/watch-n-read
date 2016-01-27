@@ -19,12 +19,18 @@ Stuyvesant High School
 ## Run
   - python app.py
 
+## Short Video
+  - https://youtu.be/iEQ2AC-OTf4
+
+## Website on a server
+  - http://162.243.19.69/
 ## Links
   - / : homepage to search a book
   - /create : create page for account to online forum
   - /login : login page for account to online forum
   - /results : return results of search
-  -162.243.19.69 : digitalocean link
+  - 162.243.19.69 : DigitalOcean Link
+  - https://youtu.be/iEQ2AC-OTf4 : YouTube Link
 ## APIs
   - Google Books
   - GoodReads
