@@ -30,8 +30,9 @@ Stuyvesant High School
   - /create : create page for account to online forum
   - /login : login page for account to online forum
   - /results : return results of search
-  - 162.243.19.69 : DigitalOcean Link
+  - http://162.243.19.69/ : DigitalOcean Link
   - https://youtu.be/iEQ2AC-OTf4 : YouTube Link
+  
 ## APIs
   - Google Books
   - GoodReads
